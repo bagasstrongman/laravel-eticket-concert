@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Concert extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable, LogsActivity;
+    use HasFactory, LogsActivity;
 
     /**
      * The table associated with created data.
@@ -39,7 +37,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'concerts';
 
     /**
      * The primary key associated with the table.
@@ -90,10 +88,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = [];
     
     /**
      * The attributes that aren't mass assignable to determine if this is a date.
@@ -107,9 +102,7 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    protected $casts = [];
 
     /**
      * The spatie log that setting log option.
@@ -119,10 +112,10 @@ class User extends Authenticatable
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['username', 'email', 'language'])
+                            ->logOnly(['company', 'name', 'start_at', 'end_at'])
                             ->logOnlyDirty()
-                            ->useLogName('Users')
-                            ->setDescriptionForEvent(fn(string $eventName) => "model users successfully {$eventName}")
+                            ->useLogName('Concert')
+                            ->setDescriptionForEvent(fn(string $eventName) => "model concert successfully {$eventName}")
                             ->dontSubmitEmptyLogs();
     }
 }
