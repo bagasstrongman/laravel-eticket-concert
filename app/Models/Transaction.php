@@ -5,6 +5,7 @@ namespace App\Models;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Transaction extends Model
@@ -117,5 +118,25 @@ class Transaction extends Model
                             ->useLogName('Transaction')
                             ->setDescriptionForEvent(fn(string $eventName) => "model transaction successfully {$eventName}")
                             ->dontSubmitEmptyLogs();
+    }
+    
+    /**
+     * Get the company that owns the concert
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Concert::class,'concert','id');
+    }
+    
+    /**
+     * Get the company that owns the concert
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class,'user','id');
     }
 }

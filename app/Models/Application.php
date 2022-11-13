@@ -5,13 +5,12 @@ namespace App\Models;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Company extends Model
+class Application extends Model
 {
     use HasFactory, LogsActivity;
-    
+
     /**
      * The table associated with created data.
      *
@@ -38,7 +37,7 @@ class Company extends Model
      *
      * @var string
      */
-    protected $table = 'companies';
+    protected $table = 'applications';
 
     /**
      * The primary key associated with the table.
@@ -104,7 +103,7 @@ class Company extends Model
      * @var array<string, string>
      */
     protected $casts = [];
-
+    
     /**
      * The spatie log that setting log option.
      *
@@ -113,20 +112,10 @@ class Company extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['name', 'phone', 'email'])
+                            ->logOnly(['app_name', 'app_icon', 'meta_author', 'meta_description', 'meta_keywords'])
                             ->logOnlyDirty()
-                            ->useLogName('Company')
-                            ->setDescriptionForEvent(fn(string $eventName) => "model company successfully {$eventName}")
+                            ->useLogName('Application')
+                            ->setDescriptionForEvent(fn(string $eventName) => "model application successfully {$eventName}")
                             ->dontSubmitEmptyLogs();
-    }
-    
-    /**
-     * Get the transactions that have the concert
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function transactions(): HasMany
-    {
-        return $this->hasMany(Concert::class,'company','id');
     }
 }
