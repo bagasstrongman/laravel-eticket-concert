@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Transaction;
 use Illuminate\Database\Seeder;
 
 class TransactionSeeder extends Seeder
@@ -13,6 +14,8 @@ class TransactionSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Transaction::factory(10)->create();
+        if (Transaction::count() == 0) {
+            Transaction::factory(10)->create();
+        }
     }
 }
