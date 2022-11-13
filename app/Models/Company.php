@@ -5,6 +5,7 @@ namespace App\Models;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Company extends Model
@@ -117,5 +118,15 @@ class Company extends Model
                             ->useLogName('Company')
                             ->setDescriptionForEvent(fn(string $eventName) => "model company successfully {$eventName}")
                             ->dontSubmitEmptyLogs();
+    }
+    
+    /**
+     * Get the transactions that have the concert
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Concert::class,'company','id');
     }
 }

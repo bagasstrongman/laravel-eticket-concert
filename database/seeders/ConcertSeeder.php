@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Concert;
 use Illuminate\Database\Seeder;
 
 class ConcertSeeder extends Seeder
@@ -13,6 +14,8 @@ class ConcertSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Concert::factory(10)->create();
+        if (Concert::count() == 0) {
+            Concert::factory(10)->create();
+        }
     }
 }

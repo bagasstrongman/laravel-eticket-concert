@@ -6,6 +6,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -124,5 +125,15 @@ class User extends Authenticatable
                             ->useLogName('Users')
                             ->setDescriptionForEvent(fn(string $eventName) => "model users successfully {$eventName}")
                             ->dontSubmitEmptyLogs();
+    }
+    
+    /**
+     * Get the transactions that have the concert
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class,'user','id');
     }
 }

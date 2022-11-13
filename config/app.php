@@ -198,7 +198,7 @@ return [
         /*
          * Custom Service Providers...
          */
-        // App\Providers\RepositoryServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
 
         // Yajra DataTables
         Yajra\DataTables\DataTablesServiceProvider::class,
