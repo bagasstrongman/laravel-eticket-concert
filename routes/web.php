@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Web;
+use App\Http\Controllers\Web\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +25,8 @@ use Illuminate\Support\Facades\Route;
 | Remember not to list anything of importance, use authenticate route instead.
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [Web\LandingController::class, 'index'])->name('landing.index');
 
 
 /*
@@ -39,7 +40,8 @@ Route::get('/', function () {
 */
 
 Route::middleware('guest')->group(function() {
-    // Todo
+    Route::resource('login', Auth\LoginController::class, ['only' => ['index', 'store']]);
+    Route::resource('register', Auth\RegisterController::class, ['only' => ['index', 'store']]);
 });
 
 /*

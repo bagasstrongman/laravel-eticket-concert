@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api;
+use App\Http\Controllers\Api\Auth;
+use App\Http\Controllers\Api\Error;
+use App\Http\Controllers\Api\System;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,13 +27,7 @@ use Illuminate\Support\Facades\Route;
 | Remember not to list anything of importance, use authenticate route instead.
 */
 
-Route::get('/', function () {
-    return response()->json([
-        'code' => 200,
-        'status' => 'success',
-        'message' => 'Server status OK'
-    ]);
-});
+Route::get('/', [Api\LandingController::class, 'index'])->name('landing.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +40,8 @@ Route::get('/', function () {
 */
 
 Route::middleware('guest')->group(function() {
-    // Todo
+    Route::apiResource('login', Auth\LoginController::class, ['only' => ['store']]);
+    Route::apiResource('register', Auth\RegisterController::class, ['only' => ['store']]);
 });
 
 /*
@@ -56,7 +55,8 @@ Route::middleware('guest')->group(function() {
 */
 
 Route::middleware('auth:sanctum')->group(function() {
-    // Todo
+    Route::apiResource('logout', Auth\LogoutController::class, ['only' => ['store']]);
+    Route::apiResource('audit', System\AuditController::class, ['only' => ['index', 'show']]);
 });
 
 /*
@@ -69,10 +69,4 @@ Route::middleware('auth:sanctum')->group(function() {
 | listed below this code will not function or listed properly.
 */
 
-Route::any('{links}', function() {
-    return response()->json([
-        'code' => 404,
-        'status' => 'failure',
-        'message' => 'Route resource not found'
-    ]);
-})->name('fallback')->where('links', '.*');
+Route::any('{links}', [Error\FallbackController::class, 'index'])->where('links', '.*');
