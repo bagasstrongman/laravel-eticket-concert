@@ -3,8 +3,8 @@
 namespace App\Services\Api\Auth;
 
 use App\Services\ApiService;
-use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\Auth\LoginResource;
 
 class LoginService extends ApiService
 {
@@ -32,7 +32,7 @@ class LoginService extends ApiService
         $token = $user->createToken(fake()->name);
 
         return $this->createResponse('Authentikasi berhasil', [
-            'data' => new UserResource($user),
+            'data' => new LoginResource($user),
             'token' => $token->plainTextToken
         ], 202);
     }
