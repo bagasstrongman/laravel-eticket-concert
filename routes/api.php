@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\Api;
 use App\Http\Controllers\Api\Auth;
+use App\Http\Controllers\Api\Main;
 use App\Http\Controllers\Api\Error;
-use App\Http\Controllers\Api\System;
+use App\Http\Controllers\Api\Audit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,7 +57,34 @@ Route::middleware('guest')->group(function() {
 
 Route::middleware('auth:sanctum')->group(function() {
     Route::apiResource('logout', Auth\LogoutController::class, ['only' => ['store']]);
-    Route::apiResource('audit', System\AuditController::class, ['only' => ['index', 'show']]);
+
+    // Main Route
+    Route::prefix('main')->group(function() {
+        Route::apiResource('company', Main\CompanyController::class);
+        Route::apiResource('concert', Main\ConcertController::class);
+        Route::apiResource('transaction', Main\TransactionController::class);
+    });
+
+    // Profile Route
+    Route::prefix('profile')->group(function() {
+        Route::apiResource('account', Audit\ModelController::class);
+    });
+
+    // Admin Route
+    Route::prefix('admin')->group(function() {
+        Route::apiResource('role', Audit\AuthController::class);
+        Route::apiResource('account', Audit\ModelController::class);
+        Route::apiResource('language', Audit\QueryController::class);
+        Route::apiResource('application', Audit\SystemController::class);
+    });
+    
+    // Audit Route
+    Route::prefix('audit')->group(function() {
+        Route::apiResource('query', Audit\QueryController::class, ['only' => ['index']]);
+        Route::apiResource('system', Audit\SystemController::class, ['only' => ['index']]);
+        Route::apiResource('auth', Audit\AuthController::class, ['only' => ['index', 'show']]);
+        Route::apiResource('model', Audit\ModelController::class, ['only' => ['index', 'show']]);
+    });
 });
 
 /*
