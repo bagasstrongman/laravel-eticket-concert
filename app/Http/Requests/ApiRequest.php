@@ -10,6 +10,20 @@ class ApiRequest extends Request
     use ApiRespons;
 
     /**
+     * Custom error message for authorization
+     *
+     * @return array
+     */
+    public function failedAuthorization()
+    {
+        $response = $this->createResponse('Server Error', [
+            'error' => 'Unauthorize Access'
+        ], 422);
+
+        abort($response);
+    }
+
+    /**
      * Custom error message for validation
      *
      * @return array
