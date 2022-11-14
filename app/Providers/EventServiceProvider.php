@@ -32,6 +32,8 @@ class EventServiceProvider extends ServiceProvider
     {
         // Models Observer
         Models\User::observe(Observers\UserObserver::class);
+        Models\Concert::observe(Observers\ConcertObserver::class);
+        Models\Transaction::observe(Observers\TransactionObserver::class);
         
         // Database Query
         Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
