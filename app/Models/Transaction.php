@@ -121,21 +121,21 @@ class Transaction extends Model
     }
     
     /**
-     * Get the company that owns the concert
+     * Get the concert that owns the transaction
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function company(): BelongsTo
+    public function event(): BelongsTo
     {
         return $this->belongsTo(Concert::class,'concert','id');
     }
     
     /**
-     * Get the company that owns the concert
+     * Get the user that owns the transaction
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function buyer(): BelongsTo
     {
         return $this->belongsTo(User::class,'user','id');
     }

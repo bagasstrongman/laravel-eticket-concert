@@ -3,7 +3,7 @@
 namespace App\Services\Api\Auth;
 
 use App\Services\ApiService;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\Auth\RegisterResource;
 
 class RegisterService extends ApiService
 {
@@ -17,7 +17,7 @@ class RegisterService extends ApiService
         $user = $this->userInterface->create($request);
 
         return $this->createResponse('Akun berhasil di daftarkan', [
-            'data' => new UserResource($user)
+            'data' => new RegisterResource($user)
         ], 202);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Api\Auth;
 
-use App\Http\Requests\ApiRequest;
 use App\Rules\LanguageRule;
+use App\Http\Requests\ApiRequest;
 
 class RegisterRequest extends ApiRequest
 {

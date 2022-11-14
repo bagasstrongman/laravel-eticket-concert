@@ -3,7 +3,7 @@
 namespace App\Services\Api\Auth;
 
 use App\Services\ApiService;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\Auth\LogoutResource;
 
 class LogoutService extends ApiService
 {
@@ -19,7 +19,7 @@ class LogoutService extends ApiService
         request()->user()->currentAccessToken()->delete();
 
         return $this->createResponse('Logout berhasil', [
-            'data' => new UserResource($user)
+            'data' => new LogoutResource($user)
         ], 202);
     }
 }
