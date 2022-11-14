@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\ApiController;
 use App\Services\Api\Auth\RegisterService;
-use App\Http\Requests\Api\Auth\RegisterRequest;
+use App\Http\Requests\Api\Auth\Register\StoreRequest;
 
 class RegisterController extends ApiController
 {
@@ -14,7 +14,7 @@ class RegisterController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RegisterRequest $request, RegisterService $service)
+    public function store(StoreRequest $request, RegisterService $service)
     {
         try {
             return $service->store($request->validated());

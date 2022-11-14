@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\ApiController;
 use App\Services\Api\Auth\LoginService;
-use App\Http\Requests\Api\Auth\LoginRequest;
+use App\Http\Requests\Api\Auth\Login\StoreRequest;
 
 class LoginController extends ApiController
 {
@@ -14,7 +14,7 @@ class LoginController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LoginRequest $request, LoginService $service)
+    public function store(StoreRequest $request, LoginService $service)
     {
         try {
             return $service->store($request->validated());
