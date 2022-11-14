@@ -48,8 +48,6 @@ trait LogReader
             $this->sendReportLog('error', $th->getMessage());
         }
         
-        return [
-            'logs' => $logs
-        ];
+        return $logs;
     }
 }
