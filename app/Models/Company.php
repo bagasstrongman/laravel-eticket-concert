@@ -121,11 +121,11 @@ class Company extends Model
     }
     
     /**
-     * Get the transactions that have the concert
+     * Get the concert that have the company
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function transactions(): HasMany
+    public function event(): HasMany
     {
         return $this->hasMany(Concert::class,'company','id');
     }

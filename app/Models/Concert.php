@@ -126,7 +126,7 @@ class Concert extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function company(): BelongsTo
+    public function companion(): BelongsTo
     {
         return $this->belongsTo(Company::class,'company','id');
     }
