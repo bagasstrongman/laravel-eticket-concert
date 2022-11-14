@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Audit;
 
-class AuditResource extends Resource
+use App\Http\Resources\Resource;
+
+class ModelResource extends Resource
 {
     /**
      * Transform the resource into an array.
