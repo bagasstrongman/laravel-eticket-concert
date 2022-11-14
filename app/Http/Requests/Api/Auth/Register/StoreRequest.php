@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Api\Auth;
+namespace App\Http\Requests\Api\Auth\Register;
 
 use App\Rules\LanguageRule;
 use App\Http\Requests\ApiRequest;
 
-class RegisterRequest extends ApiRequest
+class StoreRequest extends ApiRequest
 {
     /**
      * Get the validation rules that apply to the request.

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\Company;
+namespace App\Http\Requests\Api\Admin\Application;
 
 use App\Http\Requests\ApiRequest;
 
@@ -24,9 +24,10 @@ class UpdateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'name' => ['nullable','string','max:255','unique:companies,name'],
-            'phone' => ['nullable','string','max:255','unique:companies,phone'],
-            'email' => ['nullable','string','max:255','unique:companies,email']
+            'app_name' => ['nullable','string','max:255'],
+            'meta_author' => ['nullable','string','max:255'],
+            'meta_keywords' => ['nullable','string','max:255'],
+            'meta_description' => ['nullable','string','max:255']
         ];
     }
 }

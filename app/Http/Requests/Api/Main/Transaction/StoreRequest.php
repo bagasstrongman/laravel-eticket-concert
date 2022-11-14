@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\Concert;
+namespace App\Http\Requests\Api\Main\Transaction;
 
 use App\Http\Requests\ApiRequest;
 
@@ -24,10 +24,10 @@ class StoreRequest extends ApiRequest
     public function rules()
     {
         return [
-            'company' => ['required','numeric'],
-            'name' => ['required','string','max:255','unique:concerts,name'],
-            'start_at' => ['required','string','date_format:d-m-Y'],
-            'end_at' => ['required','string','date_format:d-m-Y']
+            'concert' => ['required','numeric'],
+            'user' => ['required','numeric'],
+            'paid_at' => ['required','string','date_format:d-m-Y'],
+            'book_at' => ['required','string','date_format:d-m-Y']
         ];
     }
 }
