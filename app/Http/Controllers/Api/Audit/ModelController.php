@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Api\System;
+namespace App\Http\Controllers\Api\Audit;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Api\System\AuditService;
+use App\Services\Api\Audit\ModelService;
 
-class AuditController extends ApiController
+class ModelController extends ApiController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(AuditService $service)
+    public function index(ModelService $service)
     {
         try {
             return $service->index();
@@ -27,7 +27,7 @@ class AuditController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(AuditService $service, $id)
+    public function show(ModelService $service, $id)
     {
         try {
             return $service->show($id);
