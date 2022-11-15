@@ -46,8 +46,8 @@ class BuyService extends ApiService
             $this->transactionInterface->create([
                 'concert' => $concert->id,
                 'user' => auth('sanctum')->user()->id,
-                'paid_at' => $date->format('Y-m-d'),
-                'book_at' => $date->format('Y-m-d'),
+                'paid_at' => $date,
+                'book_at' => $date,
                 'created_at' => $date
             ]);
         }
