@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Audit;
 use App\Http\Controllers\Api\Admin;
 use App\Http\Controllers\Api\Profile;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\BuyController;
 use App\Http\Controllers\Api\LandingController;
 
 /*
@@ -58,6 +59,7 @@ Route::middleware('guest')->group(function() {
 */
 
 Route::middleware('auth:sanctum')->group(function() {
+    Route::apiResource('buy', BuyController::class, ['only' => ['store']]);
     Route::apiResource('logout', Auth\LogoutController::class, ['only' => ['store']]);
 
     // Main Route
