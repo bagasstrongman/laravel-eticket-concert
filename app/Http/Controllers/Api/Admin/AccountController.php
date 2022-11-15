@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Api\Main;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Api\Main\ConcertService;
-use App\Http\Requests\Api\Main\Concert\StoreRequest;
-use App\Http\Requests\Api\Main\Concert\UpdateRequest;
+use App\Services\Api\Admin\AccountService;
+use App\Http\Requests\Api\Admin\Account\StoreRequest;
+use App\Http\Requests\Api\Admin\Account\UpdateRequest;
 
-class ConcertController extends ApiController
+class AccountController extends ApiController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ConcertService $service)
+    public function index(AccountService $service)
     {
         try {
             return $service->index();
@@ -29,7 +29,7 @@ class ConcertController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request, ConcertService $service)
+    public function store(StoreRequest $request, AccountService $service)
     {
         try {
             return $service->store($request->validated());
@@ -44,7 +44,7 @@ class ConcertController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ConcertService $service, $id)
+    public function show(AccountService $service, $id)
     {
         try {
             return $service->show($id);
@@ -60,7 +60,7 @@ class ConcertController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, ConcertService $service, $id)
+    public function update(UpdateRequest $request, AccountService $service, $id)
     {
         try {
             return $service->update($request->validated(), $id);
@@ -75,7 +75,7 @@ class ConcertController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ConcertService $service, $id)
+    public function destroy(AccountService $service, $id)
     {
         try {
             return $service->destroy($id);

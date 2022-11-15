@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Api\Concert;
+namespace App\Http\Requests\Api\Profile\Account;
 
+use App\Rules\LanguageRule;
 use App\Http\Requests\ApiRequest;
 
 class UpdateRequest extends ApiRequest
@@ -24,10 +25,10 @@ class UpdateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'company' => ['nullable','numeric'],
-            'name' => ['nullable','string','max:255','unique:concerts,name'],
-            'start_at' => ['nullable','string','date_format:d-m-Y'],
-            'end_at' => ['nullable','string','date_format:d-m-Y']
+            'username' => ['nullable','string','max:255','unique:users,username'],
+            'email' => ['nullable','string','max:255','unique:users,email','email:dns'],
+            'language' => ['nullable','string','max:255',new LanguageRule],
+            'password' => ['nullable','string','min:8','max:255','confirmed']
         ];
     }
 }

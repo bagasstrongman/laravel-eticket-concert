@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Services\Api\Main;
+namespace App\Services\Api\Admin;
 
 use App\Services\ApiService;
-use App\Http\Resources\Main\CompanyResource;
+use App\Http\Resources\Admin\AccountResource;
 
-class CompanyService extends ApiService
+class AccountService extends ApiService
 {
     /**
      * Index function.
      */
     public function index()
     {
-        $companies = $this->companyInterface->all();
+        $users = $this->userInterface->all();
 
-        if (count($companies) > 0) {
+        if (count($users) > 0) {
             return $this->createResponse('Data berhasil diterima', [
-                'data' => CompanyResource::collection($companies)
+                'data' => AccountResource::collection($users)
             ], 202);
         }
 
@@ -32,7 +32,7 @@ class CompanyService extends ApiService
      */
     public function store($request)
     {
-        $this->companyInterface->create($request);
+        $this->userInterface->create($request);
 
         return $this->index();
     }
@@ -44,10 +44,10 @@ class CompanyService extends ApiService
      */
     public function show($id)
     {
-        $company = $this->companyInterface->findById(intval($id));
+        $user = $this->userInterface->findById(intval($id));
 
         return $this->createResponse('Data berhasil diterima', [
-            'data' => new CompanyResource($company)
+            'data' => new AccountResource($user)
         ], 206);
     }
 
@@ -59,7 +59,7 @@ class CompanyService extends ApiService
      */
     public function update($request, $id)
     {
-        $this->companyInterface->update(intval($id), $request);
+        $this->userInterface->update(intval($id), $request);
 
         if (empty($request)) {
             return $this->createResponse('Data berhasil diubah', [
@@ -77,7 +77,7 @@ class CompanyService extends ApiService
      */
     public function destroy($id)
     {
-        $this->companyInterface->deleteById($id);
+        $this->userInterface->deleteById($id);
 
         return $this->index();
     }

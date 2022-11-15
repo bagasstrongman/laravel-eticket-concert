@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\Main;
 
 use App\Http\Controllers\ApiController;
 use App\Services\Api\Main\CompanyService;
-use App\Http\Requests\Api\Company\StoreRequest;
-use App\Http\Requests\Api\Company\UpdateRequest;
+use App\Http\Requests\Api\Main\Company\StoreRequest;
+use App\Http\Requests\Api\Main\Company\UpdateRequest;
 
 class CompanyController extends ApiController
 {

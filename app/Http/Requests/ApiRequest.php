@@ -16,9 +16,9 @@ class ApiRequest extends Request
      */
     public function failedAuthorization()
     {
-        $response = $this->createResponse('Server Error', [
-            'error' => 'Unauthorize Access'
-        ], 422);
+        $response = $this->createResponse('Unauthenticated Access', [
+            'data' => 'Please authenticate your self as an user'
+        ], 401);
 
         abort($response);
     }

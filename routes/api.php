@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\Api;
 use App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Api\Main;
 use App\Http\Controllers\Api\Error;
 use App\Http\Controllers\Api\Audit;
+use App\Http\Controllers\Api\Admin;
+use App\Http\Controllers\Api\Profile;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\BuyController;
+use App\Http\Controllers\Api\LandingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +31,7 @@ use Illuminate\Support\Facades\Route;
 | Remember not to list anything of importance, use authenticate route instead.
 */
 
-Route::get('/', [Api\LandingController::class, 'index'])->name('landing.index');
+Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +59,7 @@ Route::middleware('guest')->group(function() {
 */
 
 Route::middleware('auth:sanctum')->group(function() {
+    Route::apiResource('buy', BuyController::class, ['only' => ['store']]);
     Route::apiResource('logout', Auth\LogoutController::class, ['only' => ['store']]);
 
     // Main Route
@@ -67,23 +71,21 @@ Route::middleware('auth:sanctum')->group(function() {
 
     // Profile Route
     Route::prefix('profile')->group(function() {
-        Route::apiResource('account', Audit\ModelController::class);
+        Route::apiResource('account', Profile\AccountController::class, ['only' => ['index','update']]);
     });
 
     // Admin Route
     Route::prefix('admin')->group(function() {
-        Route::apiResource('role', Audit\AuthController::class);
-        Route::apiResource('account', Audit\ModelController::class);
-        Route::apiResource('language', Audit\QueryController::class);
-        Route::apiResource('application', Audit\SystemController::class);
+        Route::apiResource('account', Admin\AccountController::class);
+        Route::apiResource('application', Admin\ApplicationController::class, ['only' => ['index','update']]);
     });
     
     // Audit Route
     Route::prefix('audit')->group(function() {
         Route::apiResource('query', Audit\QueryController::class, ['only' => ['index']]);
         Route::apiResource('system', Audit\SystemController::class, ['only' => ['index']]);
-        Route::apiResource('auth', Audit\AuthController::class, ['only' => ['index', 'show']]);
-        Route::apiResource('model', Audit\ModelController::class, ['only' => ['index', 'show']]);
+        Route::apiResource('auth', Audit\AuthController::class, ['only' => ['index','show']]);
+        Route::apiResource('model', Audit\ModelController::class, ['only' => ['index','show']]);
     });
 });
 

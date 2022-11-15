@@ -32,7 +32,7 @@ class TransactionService extends ApiService
      */
     public function store($request)
     {
-        $transaction = $this->transactionInterface->create($request);
+        $this->transactionInterface->create($request);
 
         return $this->index();
     }
@@ -59,7 +59,7 @@ class TransactionService extends ApiService
      */
     public function update($request, $id)
     {
-        $transaction = $this->transactionInterface->update(intval($id), $request);
+        $this->transactionInterface->update(intval($id), $request);
 
         if (empty($request)) {
             return $this->createResponse('Data berhasil diubah', [

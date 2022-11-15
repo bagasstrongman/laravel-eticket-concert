@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\Main;
 
 use App\Http\Controllers\ApiController;
 use App\Services\Api\Main\TransactionService;
-use App\Http\Requests\Api\Transaction\StoreRequest;
-use App\Http\Requests\Api\Transaction\UpdateRequest;
+use App\Http\Requests\Api\Main\Transaction\StoreRequest;
+use App\Http\Requests\Api\Main\Transaction\UpdateRequest;
 
 class TransactionController extends ApiController
 {
