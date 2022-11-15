@@ -32,7 +32,7 @@ class CompanyService extends ApiService
      */
     public function store($request)
     {
-        $company = $this->companyInterface->create($request);
+        $this->companyInterface->create($request);
 
         return $this->index();
     }
@@ -59,7 +59,7 @@ class CompanyService extends ApiService
      */
     public function update($request, $id)
     {
-        $company = $this->companyInterface->update(intval($id), $request);
+        $this->companyInterface->update(intval($id), $request);
 
         if (empty($request)) {
             return $this->createResponse('Data berhasil diubah', [
