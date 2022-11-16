@@ -1,6 +1,6 @@
 # Project Title
 
-E-Ticket Concert (Simple Mode)
+E-Ticket Concert
 
 ## Description
 
