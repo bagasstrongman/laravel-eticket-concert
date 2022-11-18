@@ -9,6 +9,19 @@ use App\Http\Requests\Api\Admin\Application\UpdateRequest;
 class ApplicationController extends ApiController
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['role:admin']);
+        $this->middleware(['role:superadmin']);
+        $this->middleware(['permission:application.index'], ['only' => ['index']]);
+        $this->middleware(['permission:application.update'], ['only' => ['update']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

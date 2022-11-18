@@ -10,6 +10,22 @@ use App\Http\Requests\Api\Admin\Account\UpdateRequest;
 class AccountController extends ApiController
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['role:admin']);
+        $this->middleware(['role:superadmin']);
+        $this->middleware(['permission:account.index'], ['only' => ['index']]);
+        $this->middleware(['permission:account.store'], ['only' => ['store']]);
+        $this->middleware(['permission:account.show'], ['only' => ['show']]);
+        $this->middleware(['permission:account.update'], ['only' => ['update']]);
+        $this->middleware(['permission:account.delete'], ['only' => ['delete']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

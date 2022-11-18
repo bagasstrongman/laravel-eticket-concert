@@ -8,6 +8,18 @@ use App\Services\Api\Audit\AuthService;
 class AuthController extends ApiController
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['role:superadmin']);
+        $this->middleware(['permission:auth.index'], ['only' => ['index']]);
+        $this->middleware(['permission:auth.show'], ['only' => ['show']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

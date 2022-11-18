@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\profile;
 
 use App\Http\Controllers\ApiController;
 use App\Services\Api\Profile\AccountService;
-use App\Http\Requests\Api\Account\UpdateRequest;
+use App\Http\Requests\Api\Profile\Account\UpdateRequest;
 
 class AccountController extends ApiController
 {

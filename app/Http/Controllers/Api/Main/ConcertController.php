@@ -10,6 +10,22 @@ use App\Http\Requests\Api\Main\Concert\UpdateRequest;
 class ConcertController extends ApiController
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['role:admin']);
+        $this->middleware(['role:superadmin']);
+        $this->middleware(['permission:concert.index'], ['only' => ['index']]);
+        $this->middleware(['permission:concert.store'], ['only' => ['store']]);
+        $this->middleware(['permission:concert.show'], ['only' => ['show']]);
+        $this->middleware(['permission:concert.update'], ['only' => ['update']]);
+        $this->middleware(['permission:concert.delete'], ['only' => ['delete']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

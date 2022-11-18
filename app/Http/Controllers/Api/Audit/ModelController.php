@@ -8,6 +8,18 @@ use App\Services\Api\Audit\ModelService;
 class ModelController extends ApiController
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['role:superadmin']);
+        $this->middleware(['permission:model.index'], ['only' => ['index']]);
+        $this->middleware(['permission:model.show'], ['only' => ['show']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
