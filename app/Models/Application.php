@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Spatie\Activitylog\LogOptions;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Application extends Model
 {
-    use HasFactory, LogsActivity;
+    use HasFactory, LogsActivity, HasRoles;
 
     /**
      * The table associated with created data.
