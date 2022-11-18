@@ -158,4 +158,112 @@ return [
 
         'store' => env('PERMISSION_CACHE_STORE', 'default'),
     ],
+
+    'seeder' => [
+        'list' => [
+            'company.index',
+            'company.store',
+            'company.show',
+            'company.update',
+            'company.destroy',
+
+            'concert.index',
+            'concert.store',
+            'concert.show',
+            'concert.update',
+            'concert.destroy',
+            
+            'transaction.index',
+            'transaction.store',
+            'transaction.show',
+            'transaction.update',
+            'transaction.destroy',
+
+            'account.index',
+            'account.store',
+            'account.show',
+            'account.update',
+            'account.destroy',
+
+            'application.index',
+            'application.update',
+
+            'query.index',
+            'system.index',
+            'auth.index',
+            'auth.show',
+            'model.index',
+            'model.show',
+
+            'buy.store'
+        ],
+        'role' => [
+            'superadmin' => [
+                'company.index',
+                'company.store',
+                'company.show',
+                'company.update',
+                'company.destroy',
+    
+                'concert.index',
+                'concert.store',
+                'concert.show',
+                'concert.update',
+                'concert.destroy',
+                
+                'transaction.index',
+                'transaction.store',
+                'transaction.show',
+                'transaction.update',
+                'transaction.destroy',
+    
+                'account.index',
+                'account.store',
+                'account.show',
+                'account.update',
+                'account.destroy',
+    
+                'application.index',
+                'application.update',
+    
+                'query.index',
+                'system.index',
+                'auth.index',
+                'auth.show',
+                'model.index',
+                'model.show'
+            ],
+            'admin' => [
+                'company.index',
+                'company.store',
+                'company.show',
+                'company.update',
+                'company.destroy',
+    
+                'concert.index',
+                'concert.store',
+                'concert.show',
+                'concert.update',
+                'concert.destroy',
+                
+                'transaction.index',
+                'transaction.store',
+                'transaction.show',
+                'transaction.update',
+                'transaction.destroy',
+    
+                'account.index',
+                'account.store',
+                'account.show',
+                'account.update',
+                'account.destroy',
+    
+                'application.index',
+                'application.update'
+            ],
+            'user' => [
+                'buy.store'
+            ]
+        ]
+    ]
 ];
