@@ -11,8 +11,8 @@ class FallbackService extends ApiService
      */
     public function index()
     {
-        return $this->createResponse('Resource API tidak ditemukan', [
-            'data' => 'Route resource tidak ditemukan silahkan hubungi pihak pengembang'
+        return $this->createResponse(trans('api.fallback.error'), [
+            'error' => trans('api.fallback.message')
         ], 404);
     }
 }
