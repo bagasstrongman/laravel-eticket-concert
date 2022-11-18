@@ -13,7 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::connection(config('activitylog.database_connection'))->create(config('activitylog.table_name'), function (Blueprint $table) {
+        $table_name = config()->get('activitylog.table_name');
+        $connection = config()->get('activitylog.database_connection');
+
+        Schema::connection($connection)->create($table_name, function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('log_name')->nullable();
             $table->text('description');
@@ -32,6 +35,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::connection(config('activitylog.database_connection'))->dropIfExists(config('activitylog.table_name'));
+        $table_name = config()->get('activitylog.table_name');
+        $connection = config()->get('activitylog.database_connection');
+
+        Schema::connection($connection)->dropIfExists($table_name);
     }
 };

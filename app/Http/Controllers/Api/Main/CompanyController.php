@@ -10,6 +10,22 @@ use App\Http\Requests\Api\Main\Company\UpdateRequest;
 class CompanyController extends ApiController
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['role:admin']);
+        $this->middleware(['role:superadmin']);
+        $this->middleware(['permission:company.index'], ['only' => ['index']]);
+        $this->middleware(['permission:company.store'], ['only' => ['store']]);
+        $this->middleware(['permission:company.show'], ['only' => ['show']]);
+        $this->middleware(['permission:company.update'], ['only' => ['update']]);
+        $this->middleware(['permission:company.delete'], ['only' => ['delete']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

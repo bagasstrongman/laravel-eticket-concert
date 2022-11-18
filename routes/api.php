@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Profile;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BuyController;
 use App\Http\Controllers\Api\LandingController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,11 +60,11 @@ Route::middleware('guest')->group(function() {
 */
 
 Route::middleware('auth:sanctum')->group(function() {
-    Route::apiResource('buy', BuyController::class, ['only' => ['store']]);
+    Route::apiResource('buy', BuyController::class, ['only' => ['store']])->middleware('role:user');
     Route::apiResource('logout', Auth\LogoutController::class, ['only' => ['store']]);
 
     // Main Route
-    Route::prefix('main')->group(function() {
+    Route::prefix('main')->middleware('role:superadmin|admin')->group(function() {
         Route::apiResource('company', Main\CompanyController::class);
         Route::apiResource('concert', Main\ConcertController::class);
         Route::apiResource('transaction', Main\TransactionController::class);
@@ -75,13 +76,13 @@ Route::middleware('auth:sanctum')->group(function() {
     });
 
     // Admin Route
-    Route::prefix('admin')->group(function() {
+    Route::prefix('admin')->middleware('role:superadmin|admin')->group(function() {
         Route::apiResource('account', Admin\AccountController::class);
         Route::apiResource('application', Admin\ApplicationController::class, ['only' => ['index','update']]);
     });
     
     // Audit Route
-    Route::prefix('audit')->group(function() {
+    Route::prefix('audit')->middleware('role:superadmin')->group(function() {
         Route::apiResource('query', Audit\QueryController::class, ['only' => ['index']]);
         Route::apiResource('system', Audit\SystemController::class, ['only' => ['index']]);
         Route::apiResource('auth', Audit\AuthController::class, ['only' => ['index','show']]);

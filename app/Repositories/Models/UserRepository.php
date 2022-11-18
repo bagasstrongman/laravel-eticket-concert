@@ -40,7 +40,7 @@ class UserRepository extends EloquentRepository implements UserInterface
         if (array_key_exists('role', $payload)) {
             $model->assignRole($payload['role']);
         } else {
-            // $model->assignRole('user');
+            $model->assignRole('user');
         }
 
         return $model->fresh();

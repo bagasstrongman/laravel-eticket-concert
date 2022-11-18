@@ -8,6 +8,17 @@ use App\Services\Api\Audit\QueryService;
 class QueryController extends ApiController
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['role:superadmin']);
+        $this->middleware(['permission:query.index'], ['only' => ['index']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

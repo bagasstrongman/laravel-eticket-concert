@@ -12,7 +12,7 @@ class LandingResource extends Resource
      */
     public function toArray($request)
     {
-        $app_url = config('app.url');
+        $app_url = config()->get('app.url');
         $uri = ($app_url == 'http://localhost') ? $app_url . ':8000/' : $app_url . '/';
 
         return [

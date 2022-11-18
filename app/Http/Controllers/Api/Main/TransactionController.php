@@ -10,6 +10,22 @@ use App\Http\Requests\Api\Main\Transaction\UpdateRequest;
 class TransactionController extends ApiController
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['role:admin']);
+        $this->middleware(['role:superadmin']);
+        $this->middleware(['permission:transaction.index'], ['only' => ['index']]);
+        $this->middleware(['permission:transaction.store'], ['only' => ['store']]);
+        $this->middleware(['permission:transaction.show'], ['only' => ['show']]);
+        $this->middleware(['permission:transaction.update'], ['only' => ['update']]);
+        $this->middleware(['permission:transaction.delete'], ['only' => ['delete']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

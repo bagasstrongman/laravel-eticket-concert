@@ -70,8 +70,8 @@ trait ApiRespons
             static::$formatter['link'] = request()->url();
 
             static::$formatter['meta']['version'] = static::$version;
-            static::$formatter['meta']['author'] = nullToEmptyString(config('meta.author'));
-            static::$formatter['meta']['host'] = nullToEmptyString(config('app.url'));
+            static::$formatter['meta']['author'] = nullToEmptyString(config()->get('meta.author'));
+            static::$formatter['meta']['host'] = nullToEmptyString(config()->get('app.url'));
             static::$formatter['meta']['type'] = static::$type;
             static::$formatter['meta']['date'] = date('d-m-Y H:i:s');
 
@@ -89,7 +89,7 @@ trait ApiRespons
             if (isset($data['token'])) {
                 static::$formatter['token'] = nullToEmptyString($data['token']);
                 static::$formatter['token_type'] = isset($data['token_type']) ? $data['token_type'] : 'Bearer';
-                static::$formatter['expires_in'] = isset($data['expires_in']) ? $data['expires_in'] : config('sanctum.expiration') * 60;
+                static::$formatter['expires_in'] = isset($data['expires_in']) ? $data['expires_in'] : config()->get('sanctum.expiration') * 60;
             }
 
             static::$formatter['metadata']['total_data'] = isset($data['total_data']) ? $data['total_data'] : (isset($data['data']) ? (is_countable($data['data']) ? count($data['data']) : (($data['data'] == "") ? 0 : 1)) : 0);
