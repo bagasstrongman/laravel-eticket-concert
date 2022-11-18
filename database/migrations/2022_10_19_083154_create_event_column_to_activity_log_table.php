@@ -13,7 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::connection(config('activitylog.database_connection'))->table(config('activitylog.table_name'), function (Blueprint $table) {
+        $table_name = config()->get('activitylog.table_name');
+        $connection = config()->get('activitylog.database_connection');
+
+        Schema::connection($connection)->table($table_name, function (Blueprint $table) {
             $table->string('event')->nullable()->after('subject_type');
         });
     }
@@ -25,7 +28,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::connection(config('activitylog.database_connection'))->table(config('activitylog.table_name'), function (Blueprint $table) {
+        $table_name = config()->get('activitylog.table_name');
+        $connection = config()->get('activitylog.database_connection');
+
+        Schema::connection($connection)->table($table_name, function (Blueprint $table) {
             $table->dropColumn('event');
         });
     }

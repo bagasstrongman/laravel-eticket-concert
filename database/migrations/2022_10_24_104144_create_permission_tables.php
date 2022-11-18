@@ -14,9 +14,9 @@ return new class extends Migration
      */
     public function up()
     {
-        $tableNames = config('permission.table_names');
-        $columnNames = config('permission.column_names');
-        $teams = config('permission.teams');
+        $tableNames = config()->get('permission.table_names');
+        $columnNames = config()->get('permission.column_names');
+        $teams = config()->get('permission.teams');
 
         if (empty($tableNames)) {
             throw new \Exception('Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.');
@@ -36,14 +36,14 @@ return new class extends Migration
 
         Schema::create($tableNames['roles'], function (Blueprint $table) use ($teams, $columnNames) {
             $table->bigIncrements('id'); // role id
-            if ($teams || config('permission.testing')) { // permission.testing is a fix for sqlite testing
+            if ($teams || config()->get('permission.testing')) { // permission.testing is a fix for sqlite testing
                 $table->unsignedBigInteger($columnNames['team_foreign_key'])->nullable();
                 $table->index($columnNames['team_foreign_key'], 'roles_team_foreign_key_index');
             }
             $table->string('name');       // For MySQL 8.0 use string('name', 125);
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->timestamps();
-            if ($teams || config('permission.testing')) {
+            if ($teams || config()->get('permission.testing')) {
                 $table->unique([$columnNames['team_foreign_key'], 'name', 'guard_name']);
             } else {
                 $table->unique(['name', 'guard_name']);
@@ -115,8 +115,8 @@ return new class extends Migration
         });
 
         app('cache')
-            ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)
-            ->forget(config('permission.cache.key'));
+            ->store(config()->get('permission.cache.store') != 'default' ? config()->get('permission.cache.store') : null)
+            ->forget(config()->get('permission.cache.key'));
     }
 
     /**
@@ -126,7 +126,7 @@ return new class extends Migration
      */
     public function down()
     {
-        $tableNames = config('permission.table_names');
+        $tableNames = config()->get('permission.table_names');
 
         if (empty($tableNames)) {
             throw new \Exception('Error: config/permission.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.');
