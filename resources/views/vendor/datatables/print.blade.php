@@ -3,7 +3,7 @@
     <head>
         @includeIf('partials.head.meta')
 
-        <title>{{ basename(request()->path()) ? ucfirst(basename(request()->path())) . ' |' : '' }} {{ config('app.name') }}</title>
+        <title>{{ basename(request()->path()) ? ucfirst(basename(request()->path())) . ' |' : '' }} {{ config()->get('app.name') }}</title>
 
         @includeIf('partials.head.icon')
         @includeIf('partials.head.datatable.css')
