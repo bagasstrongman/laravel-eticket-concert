@@ -29,7 +29,7 @@ class LandingService extends ApiService
      */
     public function index()
     {
-        return $this->createResponse('Data berhasil diterima', [
+        return $this->createResponse(trans('api.response.accepted'), [
             'data' => LandingResource::collection($this->getRoutes())
         ], 202);
     }

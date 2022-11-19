@@ -14,7 +14,7 @@ class ApplicationService extends ApiService
     {
         $application = $this->userInterface->findById(1);
 
-        return $this->createResponse('Data berhasil diterima', [
+        return $this->createResponse(trans('api.response.accepted'), [
             'data' => new ApplicationResource($application)
         ], 202);
     }
@@ -30,8 +30,8 @@ class ApplicationService extends ApiService
         $this->userInterface->update(1, $request);
 
         if (empty($request)) {
-            return $this->createResponse('Data berhasil diubah', [
-                'data' => 'Tidak ada data yang diubah'
+            return $this->createResponse(trans('api.response.updated'), [
+                'data' => trans('api.response.no_data_changed')
             ], 202);
         }
 

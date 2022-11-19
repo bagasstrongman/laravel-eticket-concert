@@ -18,20 +18,20 @@ class LoginService extends ApiService
         try {
             $user = $this->userInterface->findByCustomId([['username', $request['username']]]);
         } catch (\Throwable $th) {
-            return $this->createResponse('Authentikasi Gagal', [
-                'error' => 'Akun tidak ditemukan, silahkan register terlebih dahulu'
+            return $this->createResponse(trans('api.login.error'), [
+                'error' => trans('api.login.not_found')
             ], 401);
         }
 
-        if (!$user || !Hash::check($request['password'], $user->password)) {
-            return $this->createResponse('Authentikasi Gagal', [
-                'error' => 'Password salah, silahkan coba lagi'
+        if (!Hash::check($request['password'], $user->password)) {
+            return $this->createResponse(trans('api.login.error'), [
+                'error' => trans('api.login.invalid_password')
             ], 401);
         }
         
-        $token = $user->createToken(fake()->name);
+        $token = $user->createToken(fake()->userName);
 
-        return $this->createResponse('Authentikasi berhasil', [
+        return $this->createResponse(trans('api.login.success'), [
             'data' => new LoginResource($user),
             'token' => $token->plainTextToken
         ], 202);

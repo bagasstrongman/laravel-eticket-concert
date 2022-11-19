@@ -15,13 +15,13 @@ class CompanyService extends ApiService
         $companies = $this->companyInterface->all();
 
         if (count($companies) > 0) {
-            return $this->createResponse('Data berhasil diterima', [
+            return $this->createResponse(trans('api.response.accepted'), [
                 'data' => CompanyResource::collection($companies)
             ], 202);
         }
 
-        return $this->createResponse('Data berhasil diterima', [
-            'data' => 'Tidak ada data yang tersedia'
+        return $this->createResponse(trans('api.response.accepted'), [
+            'data' => trans('api.response.no_data')
         ], 202);
     }
 
@@ -46,7 +46,7 @@ class CompanyService extends ApiService
     {
         $company = $this->companyInterface->findById(intval($id));
 
-        return $this->createResponse('Data berhasil diterima', [
+        return $this->createResponse(trans('api.response.accepted'), [
             'data' => new CompanyResource($company)
         ], 206);
     }
@@ -62,8 +62,8 @@ class CompanyService extends ApiService
         $this->companyInterface->update(intval($id), $request);
 
         if (empty($request)) {
-            return $this->createResponse('Data berhasil diubah', [
-                'data' => 'Tidak ada data yang diubah'
+            return $this->createResponse(trans('api.response.updated'), [
+                'data' => trans('api.response.no_data_changed')
             ], 202);
         }
 

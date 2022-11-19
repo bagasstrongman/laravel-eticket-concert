@@ -16,7 +16,7 @@ class RegisterService extends ApiService
     {
         $user = $this->userInterface->create($request);
 
-        return $this->createResponse('Akun berhasil di daftarkan', [
+        return $this->createResponse(trans('api.register.success', ['username' => $user->username]), [
             'data' => new RegisterResource($user)
         ], 202);
     }

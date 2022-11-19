@@ -15,10 +15,9 @@ class LogoutService extends ApiService
     public function store()
     {
         $user = auth('sanctum')->user();
+        $user->tokens()->delete();
 
-        request()->user()->currentAccessToken()->delete();
-
-        return $this->createResponse('Logout berhasil', [
+        return $this->createResponse(trans('api.logout.success'), [
             'data' => new LogoutResource($user)
         ], 202);
     }
