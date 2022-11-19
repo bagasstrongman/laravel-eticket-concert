@@ -4,6 +4,14 @@ return [
     'list' => [
         [
             'group' => 'api',
+            'key' => 'fallback.error',
+            'text' => [
+                'id' => 'Resource API tidak ditemukan',
+                'en' => 'Resource API not found'
+            ]
+        ],
+        [
+            'group' => 'api',
             'key' => 'fallback.message',
             'text' => [
                 'id' => 'Harap menghubungi pengembang website',
@@ -12,322 +20,146 @@ return [
         ],
         [
             'group' => 'api',
-            'key' => 'fallback.error',
+            'key' => 'unauthenticate.error',
             'text' => [
-                'id' => 'Resource API tidak ditemukan',
-                'en' => 'Resource API not found'
+                'id' => 'Akses yang tidak di autentikasi',
+                'en' => 'Unauthenticated Access'
             ]
         ],
         [
-            'group' => 'error',
-            'key' => 'default_code',
+            'group' => 'api',
+            'key' => 'unauthenticate.message',
             'text' => [
-                'id' => '130',
-                'en' => '130'
+                'id' => 'Harap autentikasi diri Anda sebagai pengguna',
+                'en' => 'Please authenticate your self as an user'
             ]
         ],
         [
-            'group' => 'error',
-            'key' => 'default_title',
-            'text' => [
-                'id' => 'Something Wrong',
-                'en' => 'Ada sesuatu yang salah'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => 'back_home',
-            'text' => [
-                'id' => 'Back to home',
-                'en' => 'Kembali ke halaman'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => 'default_message',
-            'text' => [
-                'id' => 'Failed to load web page (unknown error)',
-                'en' => 'Gagal memuat halaman web (kesalahan tidak diketahui)'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '401.code',
-            'text' => [
-                'id' => '401',
-                'en' => '401'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '401.title',
-            'text' => [
-                'id' => 'Unauthorized Request',
-                'en' => 'Permintaan Tidak Sah'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '401.description',
-            'text' => [
-                'id' => 'Unauthorized Access due invalid credential or access',
-                'en' => 'Akses Tidak Sah karena kredensial atau akses tidak valid'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '403.code',
-            'text' => [
-                'id' => '403',
-                'en' => '403'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '403.title',
-            'text' => [
-                'id' => 'Forbidden Access',
-                'en' => 'Akses Terlarang'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '403.description',
-            'text' => [
-                'id' => 'You don\'t have right permission to access this page',
-                'en' => 'Anda tidak memiliki izin yang tepat untuk mengakses halaman ini'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '404.code',
-            'text' => [
-                'id' => '404',
-                'en' => '404'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '404.title',
-            'text' => [
-                'id' => 'Page not found',
-                'en' => 'halaman tidak ditemukan'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '404.description',
-            'text' => [
-                'id' => 'We are sorry, but the page you requested was not found',
-                'en' => 'Maaf, tetapi halaman yang Anda minta tidak ditemukan'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '419.code',
-            'text' => [
-                'id' => '419',
-                'en' => '419'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '419.title',
-            'text' => [
-                'id' => 'Halaman Kedaluwarsa',
-                'en' => 'Page Expired'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '419.description',
-            'text' => [
-                'id' => 'Maaf, tetapi sesi Anda telah kedaluwarsa. Harap segarkan dan coba lagi',
-                'en' => 'We are sorry, but your session has expired. Please refresh and try again'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '429.code',
-            'text' => [
-                'id' => '429',
-                'en' => '429'
-            ]
-        ],
-        [
-            'group' => 'error',
-            'key' => '429.title',
+            'group' => 'api',
+            'key' => 'ratelimit.error',
             'text' => [
                 'id' => 'Terlalu Banyak Permintaan',
-                'en' => 'Too Many Request'
+                'en' => 'Too Many Requests'
             ]
         ],
         [
-            'group' => 'error',
-            'key' => '429.description',
+            'group' => 'api',
+            'key' => 'ratelimit.message',
             'text' => [
-                'id' => 'Maaf, tetapi Anda telah mengirim terlalu banyak permintaan kepada kami baru-baru ini, silakan coba lagi',
-                'en' => 'We are sorry, but you have sent too many request to us recently, please try again'
+                'id' => 'Terlalu banyak permintaan dalam jangka waktu tertentu',
+                'en' => 'Too many requests in a certain period of time'
             ]
         ],
         [
-            'group' => 'error',
-            'key' => '500.code',
+            'group' => 'api',
+            'key' => 'response.accepted',
             'text' => [
-                'id' => '500',
-                'en' => '500'
+                'id' => 'Data berhasil diterima',
+                'en' => 'Data successfully received'
             ]
         ],
         [
-            'group' => 'error',
-            'key' => '500.title',
+            'group' => 'api',
+            'key' => 'response.updated',
             'text' => [
-                'id' => 'Server Error',
-                'en' => 'Server Error'
+                'id' => 'Data berhasil diubah',
+                'en' => 'Data successfully changed'
             ]
         ],
         [
-            'group' => 'error',
-            'key' => '500.description',
+            'group' => 'api',
+            'key' => 'response.not_found',
             'text' => [
-                'id' => 'Server mengalami kesalahan internal atau kesalahan konfigurasi dan tidak dapat menyelesaikan permintaan Anda',
-                'en' => 'The server encountered an internal error or misconfiguration and was unable to complete your request'
+                'id' => 'Data tidak ditemukan',
+                'en' => 'Data not found'
             ]
         ],
         [
-            'group' => 'error',
-            'key' => '503.code',
+            'group' => 'api',
+            'key' => 'response.no_data',
             'text' => [
-                'id' => '503',
-                'en' => '503'
+                'id' => 'Tidak ada data yang tersedia',
+                'en' => 'No data available'
             ]
         ],
         [
-            'group' => 'error',
-            'key' => '503.title',
+            'group' => 'api',
+            'key' => 'response.no_data_changed',
             'text' => [
-                'id' => 'Server tidak tersedia',
-                'en' => 'Server Unavailable'
+                'id' => 'Tidak ada data yang diubah',
+                'en' => 'No data has been changed'
             ]
         ],
         [
-            'group' => 'error',
-            'key' => '503.description',
+            'group' => 'api',
+            'key' => 'login.error',
             'text' => [
-                'id' => 'Server sedang sibuk sementara, harap segarkan dan coba lagi',
-                'en' => 'The server is temporary busy, please refresh and try again'
+                'id' => 'Gagal untuk melakukan autentikasi',
+                'en' => 'Failed to authenticate'
             ]
         ],
         [
-            'group' => 'error',
-            'key' => 'maintenance.code',
+            'group' => 'api',
+            'key' => 'login.success',
             'text' => [
-                'id' => 'maintenance',
-                'en' => 'maintenance'
+                'id' => 'Berhasil untuk melakukan autentikasi',
+                'en' => 'Successful to authenticate'
             ]
         ],
         [
-            'group' => 'error',
-            'key' => 'maintenance.title',
+            'group' => 'api',
+            'key' => 'login.not_found',
             'text' => [
-                'id' => 'Server Maintenance',
-                'en' => 'Server Maintenance'
+                'id' => 'Akun tidak ditemukan, silahkan daftarkan akun terlebih dahulu',
+                'en' => 'Account not found, please register an account first'
             ]
         ],
         [
-            'group' => 'error',
-            'key' => 'maintenance.description',
+            'group' => 'api',
+            'key' => 'login.invalid_password',
             'text' => [
-                'id' => 'Sorry for the inconvenience but we\'re performing some maintenance at the moment',
-                'en' => 'Sorry for the inconvenience but we\'re performing some maintenance at the moment'
+                'id' => 'Password salah, silahkan coba lagi',
+                'en' => 'Incorrect password, please try again'
             ]
         ],
         [
-            'group' => 'table',
-            'key' => 'empty.datatable',
+            'group' => 'api',
+            'key' => 'logout.success',
             'text' => [
-                'id' => 'Belum ada data yang cocok',
-                'en' => 'No matching data yet'
+                'id' => 'Logout berhasil',
+                'en' => 'Logout successful'
             ]
         ],
         [
-            'group' => 'table',
-            'key' => 'proccess',
+            'group' => 'api',
+            'key' => 'register.success',
             'text' => [
-                'id' => 'Sedang memproses...',
-                'en' => 'Processing...'
+                'id' => 'Akun :username berhasil di daftarkan',
+                'en' => 'Account :username successfully registered'
             ]
         ],
         [
-            'group' => 'table',
-            'key' => 'lenght',
+            'group' => 'api',
+            'key' => 'concert.not_found',
             'text' => [
-                'id' => 'tampilkan _MENU_ data',
-                'en' => 'show _MENU_ data'
+                'id' => 'Data konser tidak ditemukan pada database',
+                'en' => 'Concert data not found in database'
             ]
         ],
         [
-            'group' => 'table',
-            'key' => 'info',
+            'group' => 'model',
+            'key' => 'activity.description',
             'text' => [
-                'id' => 'menampilkan _START_ sampai _END_ dari _TOTAL_ data',
-                'en' => 'show _START_ to _END_ of _TOTAL_ data'
+                'id' => 'Model :model berhasil :event',
+                'en' => 'Model :model successfuly :event'
             ]
         ],
         [
-            'group' => 'table',
-            'key' => 'infoEmpty',
+            'group' => 'rule',
+            'key' => 'language.message',
             'text' => [
-                'id' => 'menampilkan 0 sampai 0 dari 0 data',
-                'en' => 'show 0 to 0 of 0 data'
-            ]
-        ],
-        [
-            'group' => 'table',
-            'key' => 'infoFilter',
-            'text' => [
-                'id' => '(disaring dari _MAX_ data)',
-                'en' => '(filtered from _MAX_ data)'
-            ]
-        ],
-        [
-            'group' => 'table',
-            'key' => 'search',
-            'text' => [
-                'id' => 'mencari :',
-                'en' => 'search :'
-            ]
-        ],
-        [
-            'group' => 'table',
-            'key' => 'infoThousand',
-            'text' => [
-                'id' => ',',
-                'en' => ','
-            ]
-        ],
-        [
-            'group' => 'table',
-            'key' => 'loading',
-            'text' => [
-                'id' => 'Sedang memuat...',
-                'en' => 'Loading...'
-            ]
-        ],
-        [
-            'group' => 'table',
-            'key' => 'aria.newest',
-            'text' => [
-                'id' => ': Centang untuk mengurutkan kolom dalam urutan menaik',
-                'en' => '": Tick to sort columns in ascending order'
-            ]
-        ],
-        [
-            'group' => 'table',
-            'key' => 'aria.oldest',
-            'text' => [
-                'id' => ': Centang untuk mengurutkan kolom ke bawah',
-                'en' => ': Tick to sort column down'
+                'id' => 'Data bahas tidak valid',
+                'en' => 'Invalid language data'
             ]
         ],
         [
