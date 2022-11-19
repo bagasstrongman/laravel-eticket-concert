@@ -18,7 +18,7 @@ class ApiController extends Controller
         $this->sendReportLog('error', $error->getMessage());
 
         return $this->createResponse('Server Error', [
-            'data' => $error->getMessage()
+            'error' => $error->getMessage()
         ], 500);
     }
 }

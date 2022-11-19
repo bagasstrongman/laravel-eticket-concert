@@ -15,13 +15,13 @@ class AccountService extends ApiService
         $users = $this->userInterface->all();
 
         if (count($users) > 0) {
-            return $this->createResponse('Data berhasil diterima', [
+            return $this->createResponse(trans('api.response.accepted'), [
                 'data' => AccountResource::collection($users)
             ], 202);
         }
 
-        return $this->createResponse('Data berhasil diterima', [
-            'data' => 'Tidak ada data yang tersedia'
+        return $this->createResponse(trans('api.response.accepted'), [
+            'data' => trans('api.response.no_data')
         ], 202);
     }
 
@@ -46,7 +46,7 @@ class AccountService extends ApiService
     {
         $user = $this->userInterface->findById(intval($id));
 
-        return $this->createResponse('Data berhasil diterima', [
+        return $this->createResponse(trans('api.response.accepted'), [
             'data' => new AccountResource($user)
         ], 206);
     }
@@ -62,8 +62,8 @@ class AccountService extends ApiService
         $this->userInterface->update(intval($id), $request);
 
         if (empty($request)) {
-            return $this->createResponse('Data berhasil diubah', [
-                'data' => 'Tidak ada data yang diubah'
+            return $this->createResponse(trans('api.response.updated'), [
+                'data' => trans('api.response.no_data_changed')
             ], 202);
         }
 

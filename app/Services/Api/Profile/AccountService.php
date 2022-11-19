@@ -14,7 +14,7 @@ class AccountService extends ApiService
     {
         $account = $this->userInterface->findById(auth('sanctum')->user()->id);
 
-        return $this->createResponse('Data berhasil diterima', [
+        return $this->createResponse(trans('api.response.accepted'), [
             'data' => new AccountResource($account)
         ], 202);
     }
@@ -30,8 +30,8 @@ class AccountService extends ApiService
         $this->userInterface->update(auth('sanctum')->user()->id, $request);
 
         if (empty($request)) {
-            return $this->createResponse('Data berhasil diubah', [
-                'data' => 'Tidak ada data yang diubah'
+            return $this->createResponse(trans('api.response.updated'), [
+                'data' => trans('api.response.no_data_changed')
             ], 202);
         }
 

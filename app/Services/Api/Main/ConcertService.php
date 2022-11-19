@@ -15,13 +15,13 @@ class ConcertService extends ApiService
         $concerts = $this->concertInterface->all(['*'], ['companion']);
 
         if (count($concerts) > 0) {
-            return $this->createResponse('Data berhasil diterima', [
+            return $this->createResponse(trans('api.response.accepted'), [
                 'data' => ConcertResource::collection($concerts)
             ], 202);
         }
 
-        return $this->createResponse('Data berhasil diterima', [
-            'data' => 'Tidak ada data yang tersedia'
+        return $this->createResponse(trans('api.response.accepted'), [
+            'data' => trans('api.response.no_data')
         ], 202);
     }
 
@@ -46,7 +46,7 @@ class ConcertService extends ApiService
     {
         $concert = $this->concertInterface->findById(intval($id), ['*'], ['companion']);
 
-        return $this->createResponse('Data berhasil diterima', [
+        return $this->createResponse(trans('api.response.accepted'), [
             'data' => new ConcertResource($concert)
         ], 206);
     }
@@ -62,8 +62,8 @@ class ConcertService extends ApiService
         $this->concertInterface->update(intval($id), $request);
 
         if (empty($request)) {
-            return $this->createResponse('Data berhasil diubah', [
-                'data' => 'Tidak ada data yang diubah'
+            return $this->createResponse(trans('api.response.updated'), [
+                'data' => trans('api.response.no_data_changed')
             ], 202);
         }
 

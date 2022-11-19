@@ -12,7 +12,7 @@ class AuthService extends ApiService
      */
     public function index()
     {
-        return $this->createResponse('Data berhasil diterima', [
+        return $this->createResponse(trans('api.response.accepted'), [
             'data' => AuthResource::collection($this->auditInterface->all(['*'], [], [['log_name', 'login'], ['log_name', 'logout']]))
         ], 202);
     }
@@ -26,7 +26,7 @@ class AuthService extends ApiService
     {
         $audit = $this->auditInterface->findById($id, ['*'], [], [['log_name', 'login'], ['log_name', 'logout']]);
 
-        return $this->createResponse('Data berhasil diterima', [
+        return $this->createResponse(trans('api.response.accepted'), [
             'data' => new AuthResource($audit)
         ], 206);
     }

@@ -118,7 +118,7 @@ class Concert extends Model
                             ->logOnly(['company', 'name', 'start_at', 'end_at'])
                             ->logOnlyDirty()
                             ->useLogName('Concert')
-                            ->setDescriptionForEvent(fn(string $eventName) => "model concert successfully {$eventName}")
+                            ->setDescriptionForEvent(fn(string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))
                             ->dontSubmitEmptyLogs();
     }
     

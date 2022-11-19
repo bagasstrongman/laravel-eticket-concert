@@ -15,13 +15,13 @@ class BuyService extends ApiService
         $transactions = $this->transactionInterface->all(['*'], ['event','buyer'], [['created_at', $date], ['user', auth('sanctum')->user()->id]]);
 
         if (count($transactions) > 0) {
-            return $this->createResponse('Data berhasil diterima', [
+            return $this->createResponse(trans('api.response.accepted'), [
                 'data' => BuyResource::collection($transactions)
             ], 202);
         }
 
-        return $this->createResponse('Data berhasil diterima', [
-            'data' => 'Tidak ada data yang tersedia'
+        return $this->createResponse(trans('api.response.accepted'), [
+            'data' => trans('api.response.no_data')
         ], 202);
     }
 
@@ -35,8 +35,8 @@ class BuyService extends ApiService
         $concert = $this->concertInterface->all(['*'], [], [['id', $request['concert']]])->first();
 
         if ($concert == null) {
-            return $this->createResponse('Data tidak ditemukan', [
-                'error' => 'data konser tidak ditemukan pada database'
+            return $this->createResponse(trans('api.response.not_found'), [
+                'error' => trans('api.concert.not_found')
             ], 404);
         }
 

@@ -15,13 +15,13 @@ class TransactionService extends ApiService
         $transactions = $this->transactionInterface->all(['*'], ['event','buyer']);
 
         if (count($transactions) > 0) {
-            return $this->createResponse('Data berhasil diterima', [
+            return $this->createResponse(trans('api.response.accepted'), [
                 'data' => TransactionResource::collection($transactions)
             ], 202);
         }
 
-        return $this->createResponse('Data berhasil diterima', [
-            'data' => 'Tidak ada data yang tersedia'
+        return $this->createResponse(trans('api.response.accepted'), [
+            'data' => trans('api.response.no_data')
         ], 202);
     }
 
@@ -46,7 +46,7 @@ class TransactionService extends ApiService
     {
         $transaction = $this->transactionInterface->findById(intval($id), ['*'], ['event','buyer']);
 
-        return $this->createResponse('Data berhasil diterima', [
+        return $this->createResponse(trans('api.response.accepted'), [
             'data' => new TransactionResource($transaction)
         ], 206);
     }
@@ -62,8 +62,8 @@ class TransactionService extends ApiService
         $this->transactionInterface->update(intval($id), $request);
 
         if (empty($request)) {
-            return $this->createResponse('Data berhasil diubah', [
-                'data' => 'Tidak ada data yang diubah'
+            return $this->createResponse(trans('api.response.updated'), [
+                'data' => trans('api.response.no_data_changed')
             ], 202);
         }
 
