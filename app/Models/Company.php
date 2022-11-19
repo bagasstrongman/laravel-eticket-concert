@@ -117,7 +117,7 @@ class Company extends Model
                             ->logOnly(['name', 'phone', 'email'])
                             ->logOnlyDirty()
                             ->useLogName('Company')
-                            ->setDescriptionForEvent(fn(string $eventName) => "model company successfully {$eventName}")
+                            ->setDescriptionForEvent(fn(string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))
                             ->dontSubmitEmptyLogs();
     }
     

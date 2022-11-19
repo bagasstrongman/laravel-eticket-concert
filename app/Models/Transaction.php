@@ -117,7 +117,7 @@ class Transaction extends Model
                             ->logOnly(['username', 'email', 'language'])
                             ->logOnlyDirty()
                             ->useLogName('Transaction')
-                            ->setDescriptionForEvent(fn(string $eventName) => "model transaction successfully {$eventName}")
+                            ->setDescriptionForEvent(fn(string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))
                             ->dontSubmitEmptyLogs();
     }
     
