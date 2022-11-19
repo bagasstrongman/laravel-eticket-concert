@@ -32,8 +32,8 @@ class Authenticate extends Middleware
     protected function unauthenticated($request, array $guards)
     {
         if ($request->expectsJson()) {
-            $response = $this->createResponse('Unauthenticated Access', [
-                'data' => 'Please authenticate your self as an user'
+            $response = $this->createResponse(trans('api.unauthenticate.error'), [
+                'error' => trans('api.unauthenticate.message')
             ], 401);
 
             abort($response);
