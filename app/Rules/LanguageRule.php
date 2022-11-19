@@ -26,6 +26,6 @@ class LanguageRule implements Rule
      */
     public function message()
     {
-        return 'Data bahasa tidak valid';
+        return trans('rule.language.message');
     }
 }
