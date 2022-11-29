@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api\Buy;
+namespace App\Http\Requests\Api\Admin\Company;
 
 use App\Http\Requests\ApiRequest;
 
-class StoreRequest extends ApiRequest
+class UpdateRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class StoreRequest extends ApiRequest
     public function rules()
     {
         return [
-            'concert' => ['required','numeric'],
-            'quantity' => ['required','numeric']
+            'name' => ['nullable','string','max:255','unique:companies,name'],
+            'phone' => ['nullable','string','max:255','unique:companies,phone'],
+            'email' => ['nullable','string','max:255','unique:companies,email']
         ];
     }
 }

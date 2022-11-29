@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\Main\Company;
+namespace App\Http\Requests\Api\Admin\Concert;
 
 use App\Http\Requests\ApiRequest;
 
@@ -24,9 +24,10 @@ class UpdateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'name' => ['nullable','string','max:255','unique:companies,name'],
-            'phone' => ['nullable','string','max:255','unique:companies,phone'],
-            'email' => ['nullable','string','max:255','unique:companies,email']
+            'company' => ['nullable','numeric'],
+            'name' => ['nullable','string','max:255','unique:concerts,name'],
+            'start_at' => ['nullable','string','date_format:d-m-Y'],
+            'end_at' => ['nullable','string','date_format:d-m-Y']
         ];
     }
 }

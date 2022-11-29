@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api\Main\Concert;
+namespace App\Http\Requests\Api\Admin\Transaction;
 
 use App\Http\Requests\ApiRequest;
 
-class UpdateRequest extends ApiRequest
+class StoreRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class UpdateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'company' => ['nullable','numeric'],
-            'name' => ['nullable','string','max:255','unique:concerts,name'],
-            'start_at' => ['nullable','string','date_format:d-m-Y'],
-            'end_at' => ['nullable','string','date_format:d-m-Y']
+            'concert' => ['required','numeric'],
+            'user' => ['required','numeric'],
+            'paid_at' => ['required','string','date_format:d-m-Y'],
+            'book_at' => ['required','string','date_format:d-m-Y']
         ];
     }
 }
