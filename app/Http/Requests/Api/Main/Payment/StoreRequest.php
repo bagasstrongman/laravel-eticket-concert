@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\Main\Transaction;
+namespace App\Http\Requests\Api\Main\Payment;
 
 use App\Http\Requests\ApiRequest;
 
@@ -25,9 +25,7 @@ class StoreRequest extends ApiRequest
     {
         return [
             'concert' => ['required','numeric'],
-            'user' => ['required','numeric'],
-            'paid_at' => ['required','string','date_format:d-m-Y'],
-            'book_at' => ['required','string','date_format:d-m-Y']
+            'quantity' => ['required','numeric']
         ];
     }
 }

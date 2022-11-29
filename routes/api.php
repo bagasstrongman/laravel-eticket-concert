@@ -7,9 +7,7 @@ use App\Http\Controllers\Api\Audit;
 use App\Http\Controllers\Api\Admin;
 use App\Http\Controllers\Api\Profile;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\BuyController;
 use App\Http\Controllers\Api\LandingController;
-use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,14 +58,13 @@ Route::middleware('guest')->group(function() {
 */
 
 Route::middleware('auth:sanctum')->group(function() {
-    Route::apiResource('buy', BuyController::class, ['only' => ['store']])->middleware('role:user');
     Route::apiResource('logout', Auth\LogoutController::class, ['only' => ['store']]);
 
     // Main Route
-    Route::prefix('main')->middleware('role:superadmin|admin')->group(function() {
-        Route::apiResource('company', Main\CompanyController::class);
-        Route::apiResource('concert', Main\ConcertController::class);
-        Route::apiResource('transaction', Main\TransactionController::class);
+    Route::prefix('main')->middleware('role:user')->group(function() {
+        Route::apiResource('payment', Main\PaymentController::class, ['only' => ['store']]);
+        Route::apiResource('concert', Main\ConcertController::class, ['only' => ['index','show']]);
+        Route::apiResource('transaction', Main\TransactionController::class, ['only' => ['index','show']]);
     });
 
     // Profile Route
@@ -77,7 +74,10 @@ Route::middleware('auth:sanctum')->group(function() {
 
     // Admin Route
     Route::prefix('admin')->middleware('role:superadmin|admin')->group(function() {
+        Route::apiResource('company', Admin\CompanyController::class);
+        Route::apiResource('concert', Admin\ConcertController::class);
         Route::apiResource('account', Admin\AccountController::class);
+        Route::apiResource('transaction', Admin\TransactionController::class);
         Route::apiResource('application', Admin\ApplicationController::class, ['only' => ['index','update']]);
     });
     
@@ -100,4 +100,4 @@ Route::middleware('auth:sanctum')->group(function() {
 | listed below this code will not function or listed properly.
 */
 
-Route::any('{links}', [Error\FallbackController::class, 'index'])->where('links', '.*');
+Route::any('{any}', [Error\FallbackController::class, 'index'])->where('any', '.*');

@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Api\Main;
 
 use App\Http\Controllers\ApiController;
 use App\Services\Api\Main\ConcertService;
-use App\Http\Requests\Api\Main\Concert\StoreRequest;
-use App\Http\Requests\Api\Main\Concert\UpdateRequest;
 
 class ConcertController extends ApiController
 {
@@ -16,13 +14,8 @@ class ConcertController extends ApiController
      */
     public function __construct()
     {
-        $this->middleware(['role:admin']);
-        $this->middleware(['role:superadmin']);
         $this->middleware(['permission:concert.index'], ['only' => ['index']]);
-        $this->middleware(['permission:concert.store'], ['only' => ['store']]);
         $this->middleware(['permission:concert.show'], ['only' => ['show']]);
-        $this->middleware(['permission:concert.update'], ['only' => ['update']]);
-        $this->middleware(['permission:concert.delete'], ['only' => ['delete']]);
     }
 
     /**
@@ -40,21 +33,6 @@ class ConcertController extends ApiController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreRequest $request, ConcertService $service)
-    {
-        try {
-            return $service->store($request->validated());
-        } catch (\Throwable $th) {
-            return $this->catchError($th);
-        }
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -64,37 +42,6 @@ class ConcertController extends ApiController
     {
         try {
             return $service->show($id);
-        } catch (\Throwable $th) {
-            return $this->catchError($th);
-        }
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateRequest $request, ConcertService $service, $id)
-    {
-        try {
-            return $service->update($request->validated(), $id);
-        } catch (\Throwable $th) {
-            return $this->catchError($th);
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ConcertService $service, $id)
-    {
-        try {
-            return $service->destroy($id);
         } catch (\Throwable $th) {
             return $this->catchError($th);
         }

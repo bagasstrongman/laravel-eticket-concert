@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api\Main;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Api\Main\CompanyService;
-use App\Http\Requests\Api\Main\Company\StoreRequest;
-use App\Http\Requests\Api\Main\Company\UpdateRequest;
+use App\Services\Api\Admin\ConcertService;
+use App\Http\Requests\Api\Admin\Concert\StoreRequest;
+use App\Http\Requests\Api\Admin\Concert\UpdateRequest;
 
-class CompanyController extends ApiController
+class ConcertController extends ApiController
 {
     /**
      * Instantiate a new controller instance.
@@ -16,13 +16,11 @@ class CompanyController extends ApiController
      */
     public function __construct()
     {
-        $this->middleware(['role:admin']);
-        $this->middleware(['role:superadmin']);
-        $this->middleware(['permission:company.index'], ['only' => ['index']]);
-        $this->middleware(['permission:company.store'], ['only' => ['store']]);
-        $this->middleware(['permission:company.show'], ['only' => ['show']]);
-        $this->middleware(['permission:company.update'], ['only' => ['update']]);
-        $this->middleware(['permission:company.delete'], ['only' => ['delete']]);
+        $this->middleware(['permission:concert.index'], ['only' => ['index']]);
+        $this->middleware(['permission:concert.store'], ['only' => ['store']]);
+        $this->middleware(['permission:concert.show'], ['only' => ['show']]);
+        $this->middleware(['permission:concert.update'], ['only' => ['update']]);
+        $this->middleware(['permission:concert.delete'], ['only' => ['delete']]);
     }
 
     /**
@@ -30,7 +28,7 @@ class CompanyController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(CompanyService $service)
+    public function index(ConcertService $service)
     {
         try {
             return $service->index();
@@ -45,7 +43,7 @@ class CompanyController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request, CompanyService $service)
+    public function store(StoreRequest $request, ConcertService $service)
     {
         try {
             return $service->store($request->validated());
@@ -60,7 +58,7 @@ class CompanyController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(CompanyService $service, $id)
+    public function show(ConcertService $service, $id)
     {
         try {
             return $service->show($id);
@@ -76,7 +74,7 @@ class CompanyController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, CompanyService $service, $id)
+    public function update(UpdateRequest $request, ConcertService $service, $id)
     {
         try {
             return $service->update($request->validated(), $id);
@@ -91,7 +89,7 @@ class CompanyController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CompanyService $service, $id)
+    public function destroy(ConcertService $service, $id)
     {
         try {
             return $service->destroy($id);

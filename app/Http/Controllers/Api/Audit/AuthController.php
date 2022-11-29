@@ -14,7 +14,6 @@ class AuthController extends ApiController
      */
     public function __construct()
     {
-        $this->middleware(['role:superadmin']);
         $this->middleware(['permission:auth.index'], ['only' => ['index']]);
         $this->middleware(['permission:auth.show'], ['only' => ['show']]);
     }

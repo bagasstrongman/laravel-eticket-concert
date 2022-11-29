@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Main;
 
-use App\Services\Api\BuyService;
 use App\Http\Controllers\ApiController;
-use App\Http\Requests\Api\Buy\StoreRequest;
+use App\Services\Api\Main\PaymentService;
+use App\Http\Requests\Api\Main\Payment\StoreRequest;
 
-class BuyController extends ApiController
+class PaymentController extends ApiController
 {
     /**
      * Instantiate a new controller instance.
@@ -15,8 +15,7 @@ class BuyController extends ApiController
      */
     public function __construct()
     {
-        $this->middleware(['role:user']);
-        $this->middleware(['permission:buy.store'], ['only' => ['store']]);
+        $this->middleware(['permission:payment.store'], ['only' => ['store']]);
     }
 
     /**
@@ -25,7 +24,7 @@ class BuyController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request, BuyService $service)
+    public function store(StoreRequest $request, PaymentService $service)
     {
         try {
             return $service->store($request->validated());

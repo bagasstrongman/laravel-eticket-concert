@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Api;
+namespace App\Services\Api\Main;
 
 use App\Services\ApiService;
-use App\Http\Resources\BuyResource;
+use App\Http\Resources\Main\PaymentResource;
 
-class BuyService extends ApiService
+class PaymentService extends ApiService
 {
     /**
      * Index function.
@@ -16,7 +16,7 @@ class BuyService extends ApiService
 
         if (count($transactions) > 0) {
             return $this->createResponse(trans('api.response.accepted'), [
-                'data' => BuyResource::collection($transactions)
+                'data' => PaymentResource::collection($transactions)
             ], 202);
         }
 

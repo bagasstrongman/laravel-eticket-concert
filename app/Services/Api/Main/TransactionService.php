@@ -12,7 +12,7 @@ class TransactionService extends ApiService
      */
     public function index()
     {
-        $transactions = $this->transactionInterface->all(['*'], ['event','buyer']);
+        $transactions = $this->transactionInterface->all(['*'], ['event','buyer'], [['user', auth('sanctum')->user()->id]]);
 
         if (count($transactions) > 0) {
             return $this->createResponse(trans('api.response.accepted'), [
@@ -26,59 +26,16 @@ class TransactionService extends ApiService
     }
 
     /**
-     * Store function.
-     * 
-     * @param $request
-     */
-    public function store($request)
-    {
-        $this->transactionInterface->create($request);
-
-        return $this->index();
-    }
-
-    /**
      * Show function.
      * 
      * @param $path
      */
     public function show($id)
     {
-        $transaction = $this->transactionInterface->findById(intval($id), ['*'], ['event','buyer']);
+        $transaction = $this->transactionInterface->findById(intval($id), ['*'], ['event','buyer'], [['user', auth('sanctum')->user()->id]]);
 
         return $this->createResponse(trans('api.response.accepted'), [
             'data' => new TransactionResource($transaction)
         ], 206);
-    }
-
-    /**
-     * Update function.
-     * 
-     * @param $request
-     * @param $id
-     */
-    public function update($request, $id)
-    {
-        $this->transactionInterface->update(intval($id), $request);
-
-        if (empty($request)) {
-            return $this->createResponse(trans('api.response.updated'), [
-                'data' => trans('api.response.no_data_changed')
-            ], 202);
-        }
-
-        return $this->index();
-    }
-
-    /**
-     * Destroy function.
-     * 
-     * @param $id
-     */
-    public function destroy($id)
-    {
-        $this->transactionInterface->deleteById($id);
-
-        return $this->index();
     }
 }
