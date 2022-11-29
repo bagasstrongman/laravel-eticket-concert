@@ -14,7 +14,6 @@ class ModelController extends ApiController
      */
     public function __construct()
     {
-        $this->middleware(['role:superadmin']);
         $this->middleware(['permission:model.index'], ['only' => ['index']]);
         $this->middleware(['permission:model.show'], ['only' => ['show']]);
     }

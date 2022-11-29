@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Api\Admin\AccountService;
-use App\Http\Requests\Api\Admin\Account\StoreRequest;
-use App\Http\Requests\Api\Admin\Account\UpdateRequest;
+use App\Services\Api\Admin\TransactionService;
+use App\Http\Requests\Api\Admin\Transaction\StoreRequest;
+use App\Http\Requests\Api\Admin\Transaction\UpdateRequest;
 
-class AccountController extends ApiController
+class TransactionController extends ApiController
 {
     /**
      * Instantiate a new controller instance.
@@ -16,11 +16,11 @@ class AccountController extends ApiController
      */
     public function __construct()
     {
-        $this->middleware(['permission:account.index'], ['only' => ['index']]);
-        $this->middleware(['permission:account.store'], ['only' => ['store']]);
-        $this->middleware(['permission:account.show'], ['only' => ['show']]);
-        $this->middleware(['permission:account.update'], ['only' => ['update']]);
-        $this->middleware(['permission:account.delete'], ['only' => ['delete']]);
+        $this->middleware(['permission:transaction.index'], ['only' => ['index']]);
+        $this->middleware(['permission:transaction.store'], ['only' => ['store']]);
+        $this->middleware(['permission:transaction.show'], ['only' => ['show']]);
+        $this->middleware(['permission:transaction.update'], ['only' => ['update']]);
+        $this->middleware(['permission:transaction.delete'], ['only' => ['delete']]);
     }
 
     /**
@@ -28,7 +28,7 @@ class AccountController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(AccountService $service)
+    public function index(TransactionService $service)
     {
         try {
             return $service->index();
@@ -43,7 +43,7 @@ class AccountController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request, AccountService $service)
+    public function store(StoreRequest $request, TransactionService $service)
     {
         try {
             return $service->store($request->validated());
@@ -58,7 +58,7 @@ class AccountController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(AccountService $service, $id)
+    public function show(TransactionService $service, $id)
     {
         try {
             return $service->show($id);
@@ -74,7 +74,7 @@ class AccountController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, AccountService $service, $id)
+    public function update(UpdateRequest $request, TransactionService $service, $id)
     {
         try {
             return $service->update($request->validated(), $id);
@@ -89,7 +89,7 @@ class AccountController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AccountService $service, $id)
+    public function destroy(TransactionService $service, $id)
     {
         try {
             return $service->destroy($id);

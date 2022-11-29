@@ -15,8 +15,6 @@ class ApplicationController extends ApiController
      */
     public function __construct()
     {
-        $this->middleware(['role:admin']);
-        $this->middleware(['role:superadmin']);
         $this->middleware(['permission:application.index'], ['only' => ['index']]);
         $this->middleware(['permission:application.update'], ['only' => ['update']]);
     }

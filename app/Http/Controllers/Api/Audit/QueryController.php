@@ -14,7 +14,6 @@ class QueryController extends ApiController
      */
     public function __construct()
     {
-        $this->middleware(['role:superadmin']);
         $this->middleware(['permission:query.index'], ['only' => ['index']]);
     }
 
