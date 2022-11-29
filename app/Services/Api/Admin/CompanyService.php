@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\Api\Main;
+namespace App\Services\Api\Admin;
 
 use App\Services\ApiService;
-use App\Http\Resources\Main\CompanyResource;
+use App\Http\Resources\Admin\CompanyResource;
 
 class CompanyService extends ApiService
 {
