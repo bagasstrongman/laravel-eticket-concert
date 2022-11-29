@@ -195,7 +195,7 @@ return [
             'model.index',
             'model.show',
 
-            'buy.store'
+            'payment.store'
         ],
         'role' => [
             'superadmin' => [
@@ -262,7 +262,13 @@ return [
                 'application.update'
             ],
             'user' => [
-                'buy.store'
+                'concert.index',
+                'concert.show',
+                
+                'transaction.index',
+                'transaction.show',
+
+                'payment.store'
             ]
         ]
     ]
