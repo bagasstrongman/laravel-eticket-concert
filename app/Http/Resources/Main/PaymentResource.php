@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Main;
 
-class BuyResource extends Resource
+use App\Http\Resources\Resource;
+
+class PaymentResource extends Resource
 {
     /**
      * Transform the resource into an array.
