@@ -9,13 +9,6 @@ trait ApiRespons
     use SystemLog;
 
     /**
-     * Set type sent data
-     *
-     * @var string
-     */
-    protected static $type = "API";
-
-    /**
      * Set api version
      *
      * @var string
@@ -27,21 +20,7 @@ trait ApiRespons
      *
      * @var string
      */
-    protected static $sanctum = null;
-
-    /**
-     * Set content type
-     *
-     * @var string
-     */
-    protected static $author = "Benjamin4k";
-
-    /**
-     * Set content type
-     *
-     * @var string
-     */
-    protected static $host = "https://localhost:8000";
+    protected static $type = "API";
 
     /**
      * Set content type
@@ -76,18 +55,6 @@ trait ApiRespons
     ];
 
     /**
-     * Instantiate a new trait instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        static::$host = config()->get('app.url');
-        static::$sanctum = (config()->get('sanctum.expiration') * 60);
-        static::$author = config()->get('meta.author');
-    }
-
-    /**
      * Create response body
      *
      * @param string $message
@@ -103,8 +70,8 @@ trait ApiRespons
             static::$formatter['link'] = request()->url();
 
             static::$formatter['meta']['version'] = static::$version;
-            static::$formatter['meta']['author'] = nullToEmptyString(static::$author);
-            static::$formatter['meta']['host'] = nullToEmptyString(static::$host);
+            static::$formatter['meta']['author'] = nullToEmptyString(config()->get('meta.author'));
+            static::$formatter['meta']['host'] = nullToEmptyString(config()->get('app.url'));
             static::$formatter['meta']['type'] = static::$type;
             static::$formatter['meta']['date'] = date('d-m-Y H:i:s');
 
@@ -121,11 +88,11 @@ trait ApiRespons
 
             if (isset($data['token'])) {
                 static::$formatter['token'] = nullToEmptyString($data['token']);
-                static::$formatter['token_type'] = $data['token_type'] ?: 'Bearer';
-                static::$formatter['expires_in'] = $data['expires_in'] ?: static::$sanctum;
+                static::$formatter['token_type'] = isset($data['token_type']) ? $data['token_type'] : 'Bearer';
+                static::$formatter['expires_in'] = isset($data['expires_in']) ? $data['expires_in'] : config()->get('sanctum.expiration') * 60;
             }
 
-            static::$formatter['metadata']['total_data'] = $data['total_data'] ?: (isset($data['data']) ? (is_countable($data['data']) ? count($data['data']) : (($data['data'] == "") ? 0 : 1)) : 0);
+            static::$formatter['metadata']['total_data'] = isset($data['total_data']) ? $data['total_data'] : (isset($data['data']) ? (is_countable($data['data']) ? count($data['data']) : (($data['data'] == "") ? 0 : 1)) : 0);
             
             return response()->json(static::$formatter, $code);
         } catch (\Throwable $th) {
