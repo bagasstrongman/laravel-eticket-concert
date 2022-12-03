@@ -20,12 +20,11 @@ class AccountService extends ApiService
     }
 
     /**
-     * Update function.
+     * Store function.
      * 
      * @param $request
-     * @param $id
      */
-    public function update($request, $id)
+    public function store($request)
     {
         $this->userInterface->update(auth('sanctum')->user()->id, $request);
 
