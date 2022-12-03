@@ -37,7 +37,9 @@
         },
         "files": [
             "app/Helpers/DateFormatter.php",
-            "app/Helpers/NullToEmptyString.php"
+            "app/Helpers/RupiahFormatter.php",
+            "app/Helpers/NullToEmptyString.php",
+            "app/Helpers/FileSizeFormatter.php"
         ]
     },
     "autoload-dev": {
