@@ -69,7 +69,7 @@ Route::middleware('auth:sanctum')->group(function() {
 
     // Profile Route
     Route::prefix('profile')->group(function() {
-        Route::apiResource('account', Profile\AccountController::class, ['only' => ['index','update']]);
+        Route::apiResource('account', Profile\AccountController::class, ['only' => ['index','store']]);
     });
 
     // Admin Route
@@ -83,8 +83,8 @@ Route::middleware('auth:sanctum')->group(function() {
     
     // Audit Route
     Route::prefix('audit')->middleware('role:superadmin')->group(function() {
-        Route::apiResource('query', Audit\QueryController::class, ['only' => ['index']]);
-        Route::apiResource('system', Audit\SystemController::class, ['only' => ['index']]);
+        Route::apiResource('query', Audit\QueryController::class, ['only' => ['index','show']]);
+        Route::apiResource('system', Audit\SystemController::class, ['only' => ['index','show']]);
         Route::apiResource('auth', Audit\AuthController::class, ['only' => ['index','show']]);
         Route::apiResource('model', Audit\ModelController::class, ['only' => ['index','show']]);
     });
