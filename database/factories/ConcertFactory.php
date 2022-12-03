@@ -18,7 +18,7 @@ class ConcertFactory extends Factory
     {
         return [
             'company' => rand(1,10),
-            'name' => fake()->unique()->name,
+            'name' => fake()->unique()->name(),
             'start_at' => now(),
             'end_at' => now()
         ];
