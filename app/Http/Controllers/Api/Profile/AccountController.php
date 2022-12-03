@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\profile;
 
 use App\Http\Controllers\ApiController;
 use App\Services\Api\Profile\AccountService;
-use App\Http\Requests\Api\Profile\Account\UpdateRequest;
+use App\Http\Requests\Api\Profile\Account\StoreRequest;
 
 class AccountController extends ApiController
 {
@@ -23,16 +23,15 @@ class AccountController extends ApiController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, AccountService $service, $id)
+    public function store(StoreRequest $request, AccountService $service)
     {
         try {
-            return $service->update($request->validated(), $id);
+            return $service->store($request->validated());
         } catch (\Throwable $th) {
             return $this->catchError($th);
         }
