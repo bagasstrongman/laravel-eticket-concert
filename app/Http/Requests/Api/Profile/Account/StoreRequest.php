@@ -5,7 +5,7 @@ namespace App\Http\Requests\Api\Profile\Account;
 use App\Rules\LanguageRule;
 use App\Http\Requests\ApiRequest;
 
-class UpdateRequest extends ApiRequest
+class StoreRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.

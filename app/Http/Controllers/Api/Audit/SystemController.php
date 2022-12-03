@@ -30,4 +30,19 @@ class SystemController extends ApiController
             return $this->catchError($th);
         }
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(SystemService $service, $id)
+    {
+        try {
+            return $service->show($id);
+        } catch (\Throwable $th) {
+            return $this->catchError($th);
+        }
+    }
 }
