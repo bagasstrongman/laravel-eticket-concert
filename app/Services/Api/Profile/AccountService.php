@@ -8,7 +8,9 @@ use App\Http\Resources\Profile\AccountResource;
 class AccountService extends ApiService
 {
     /**
-     * Index function.
+     * Display a listing of the resource.
+     * 
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -20,9 +22,10 @@ class AccountService extends ApiService
     }
 
     /**
-     * Store function.
+     * Store a newly created resource in storage.
      * 
-     * @param $request
+     * @param  array  $request
+     * @return \Illuminate\Http\Response
      */
     public function store($request)
     {

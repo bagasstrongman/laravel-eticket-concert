@@ -10,7 +10,9 @@ class SystemService extends ApiService
     use LogReader;
 
     /**
-     * Index function.
+     * Display a listing of the resource.
+     * 
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -20,9 +22,10 @@ class SystemService extends ApiService
     }
 
     /**
-     * Show function.
+     * Display the specified resource.
      * 
-     * @param $path
+     * @param  string  $date
+     * @return \Illuminate\Http\Response
      */
     public function show($date)
     {

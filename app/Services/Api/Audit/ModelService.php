@@ -8,7 +8,9 @@ use App\Http\Resources\Audit\ModelResource;
 class ModelService extends ApiService
 {
     /**
-     * Index function.
+     * Display a listing of the resource.
+     * 
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -20,9 +22,10 @@ class ModelService extends ApiService
     }
 
     /**
-     * Show function.
+     * Display the specified resource.
      * 
-     * @param $path
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {

@@ -10,6 +10,8 @@ class LandingService extends ApiService
 {
     /**
      * Get routes function.
+     * 
+     * @return array
      */
     public function getRoutes()
     {
@@ -25,7 +27,9 @@ class LandingService extends ApiService
     }
 
     /**
-     * Index function.
+     * Display a listing of the resource.
+     * 
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {

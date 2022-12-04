@@ -8,7 +8,9 @@ use App\Http\Resources\Admin\TransactionResource;
 class TransactionService extends ApiService
 {
     /**
-     * Index function.
+     * Display a listing of the resource.
+     * 
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -26,9 +28,10 @@ class TransactionService extends ApiService
     }
 
     /**
-     * Store function.
+     * Store a newly created resource in storage.
      * 
-     * @param $request
+     * @param  array  $request
+     * @return \Illuminate\Http\Response
      */
     public function store($request)
     {
@@ -38,9 +41,10 @@ class TransactionService extends ApiService
     }
 
     /**
-     * Show function.
+     * Display the specified resource.
      * 
-     * @param $path
+     * @param  string  $code
+     * @return \Illuminate\Http\Response
      */
     public function show($code)
     {
@@ -58,10 +62,11 @@ class TransactionService extends ApiService
     }
 
     /**
-     * Update function.
+     * Update the specified resource in storage.
      * 
-     * @param $request
-     * @param $id
+     * @param  array  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function update($request, $id)
     {
@@ -77,9 +82,10 @@ class TransactionService extends ApiService
     }
 
     /**
-     * Destroy function.
+     * Remove the specified resource from storage.
      * 
-     * @param $id
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {

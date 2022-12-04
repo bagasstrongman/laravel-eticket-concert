@@ -8,7 +8,9 @@ use App\Http\Resources\Admin\ApplicationResource;
 class ApplicationService extends ApiService
 {
     /**
-     * Index function.
+     * Display a listing of the resource.
+     * 
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -20,9 +22,10 @@ class ApplicationService extends ApiService
     }
 
     /**
-     * Store function.
+     * Store a newly created resource in storage.
      * 
-     * @param $request
+     * @param  array  $request
+     * @return \Illuminate\Http\Response
      */
     public function store($request)
     {
