@@ -12,7 +12,7 @@ class ServerReCache extends Command
      *
      * @var string
      */
-    protected $signature = 'benjamin4k:recache';
+    protected $signature = 'server:recache';
 
     /**
      * The console command description.
