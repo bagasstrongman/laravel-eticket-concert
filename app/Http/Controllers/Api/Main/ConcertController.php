@@ -35,13 +35,13 @@ class ConcertController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $code
      * @return \Illuminate\Http\Response
      */
-    public function show(ConcertService $service, $id)
+    public function show(ConcertService $service, $code)
     {
         try {
-            return $service->show($id);
+            return $service->show($code);
         } catch (\Throwable $th) {
             return $this->catchError($th);
         }

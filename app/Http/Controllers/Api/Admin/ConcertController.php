@@ -55,13 +55,13 @@ class ConcertController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $code
      * @return \Illuminate\Http\Response
      */
-    public function show(ConcertService $service, $id)
+    public function show(ConcertService $service, $code)
     {
         try {
-            return $service->show($id);
+            return $service->show($code);
         } catch (\Throwable $th) {
             return $this->catchError($th);
         }
@@ -71,13 +71,13 @@ class ConcertController extends ApiController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $code
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, ConcertService $service, $id)
+    public function update(UpdateRequest $request, ConcertService $service, $code)
     {
         try {
-            return $service->update($request->validated(), $id);
+            return $service->update($request->validated(), $code);
         } catch (\Throwable $th) {
             return $this->catchError($th);
         }
@@ -86,13 +86,13 @@ class ConcertController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string  $code
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ConcertService $service, $id)
+    public function destroy(ConcertService $service, $code)
     {
         try {
-            return $service->destroy($id);
+            return $service->destroy($code);
         } catch (\Throwable $th) {
             return $this->catchError($th);
         }

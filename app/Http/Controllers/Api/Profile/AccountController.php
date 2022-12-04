@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\profile;
+namespace App\Http\Controllers\Api\Profile;
 
 use App\Http\Controllers\ApiController;
 use App\Services\Api\Profile\AccountService;
