@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Main;
 
+use Illuminate\Support\Str;
 use App\Http\Resources\Resource;
 
 class TransactionResource extends Resource
@@ -14,17 +15,11 @@ class TransactionResource extends Resource
      */
     public function toArray($request)
     {
-        $quantity = $this->quantity . ' ticket';
-
-        if ($this->quantity > 1) {
-            $quantity = $this->quantity . ' tickets';
-        }
-
         return [
             'user' => $this->user->username,
             'concert' => $this->concert->name,
             'transaction_code' => $this->transaction_code,
-            'quantity' => $quantity,
+            'quantity' => $this->quantity . ' ' . Str::plural('ticket', $this->quantity),
             'total_payment' => $this->total_payment,
             'payment_date' => dateYmdToDmy($this->payment_date),
         ];

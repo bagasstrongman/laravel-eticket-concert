@@ -14,17 +14,13 @@ class AuthResource extends Resource
      */
     public function toArray($request)
     {
-        $subject = ($this->subject_id ? $this->subject_id : 'null') . ' | ' . ($this->subject_type ? $this->subject_type : 'null');
-        $causer = ($this->causer_id ? $this->causer_id : 'null') . ' | ' . ($this->causer_type ? $this->causer_type : 'null');
-        $event = ($this->event == null) ? 'null' : $this->event;
-
         return [
             'id' => $this->id,
             'log_name' => $this->log_name,
             'description' => $this->description,
-            'subject' => $subject,
-            'event' => $event,
-            'causer' => $causer,
+            'subject' => ($this->subject_id ?: 'null') . ' | ' . ($this->subject_type ?: 'null'),
+            'event' => $this->event ?: 'null',
+            'causer' => ($this->causer_id ?: 'null') . ' | ' . ($this->causer_type ?: 'null'),
             'properties' => $this->properties
         ];
     }
