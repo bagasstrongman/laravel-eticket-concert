@@ -25,6 +25,7 @@ class StoreRequest extends ApiRequest
     {
         return [
             'app_name' => ['nullable','string','max:255'],
+            'app_icon' => ['nullable','image','mimes:jpg,jpeg,png,svg','max:4092','dimensions:min_width=100,min_height=100'],
             'meta_author' => ['nullable','string','max:255'],
             'meta_keywords' => ['nullable','string','max:255'],
             'meta_description' => ['nullable','string','max:255']

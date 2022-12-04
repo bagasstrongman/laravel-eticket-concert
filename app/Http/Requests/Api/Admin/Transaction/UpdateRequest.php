@@ -24,10 +24,12 @@ class UpdateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'concert_id' => ['nullable','numeric'],
-            'user_id' => ['nullable','numeric'],
-            'paid_at' => ['nullable','string','date_format:d-m-Y'],
-            'book_at' => ['nullable','string','date_format:d-m-Y']
+            'concert_id' => ['nullable','numeric','min:1'],
+            'user_id' => ['nullable','numeric','min:1'],
+            'transaction_code' => ['nullable','string','max:255'],
+            'quantity' => ['nullable','numeric','min:1'],
+            'total_payment' => ['nullable','string','max:255'],
+            'payment_date' => ['nullable','date','date_format:d-m-Y']
         ];
     }
 }

@@ -24,10 +24,11 @@ class StoreRequest extends ApiRequest
     public function rules()
     {
         return [
-            'company_id' => ['required','numeric'],
+            'company_id' => ['required','numeric','min:1'],
             'name' => ['required','string','max:255','unique:concerts,name'],
-            'start_at' => ['required','string','date_format:d-m-Y'],
-            'end_at' => ['required','string','date_format:d-m-Y']
+            'code' => ['required','string','max:255','unique:concerts,code'],
+            'start_at' => ['required','date','date_format:d-m-Y','after:'.now()->subDay()->format('d-m-Y')],
+            'end_at' => ['required','date','date_format:d-m-Y','after:'.now()->format('d-m-Y')]
         ];
     }
 }
