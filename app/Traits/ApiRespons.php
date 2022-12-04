@@ -59,7 +59,7 @@ trait ApiRespons
      * @param string $message
      * @param array $data
      * @param int $code
-     * @return array
+     * @return \Illuminate\Http\Response
      */
     protected function createResponse(string $message = null, array $data, int $code = 200)
     {

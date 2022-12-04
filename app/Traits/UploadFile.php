@@ -53,7 +53,8 @@ trait UploadFile
     /**
      * Set path for storage when upload file.
      *
-     * @var string
+     * @param string $type
+     * @return void
      */
     protected function storageDisk($type)
     {
@@ -79,8 +80,9 @@ trait UploadFile
     /**
      * Save file in storage app
      *
-     * @param $file
-     * @var void
+     * @param string $type
+     * @param mixed $file
+     * @return void
      */
     protected function putFile($type, $file)
     {
@@ -106,8 +108,9 @@ trait UploadFile
     /**
      * Delete file in storage app
      * 
-     * @param $file
-     * @var void
+     * @param string $type
+     * @param mixed $file
+     * @return void
      */
     protected function deleteFile($type, $file)
     {
@@ -123,8 +126,9 @@ trait UploadFile
     /**
      * Check file in storage app
      * 
-     * @param $file
-     * @var void
+     * @param string $type
+     * @param mixed $file
+     * @return void
      */
     protected function checkFile($type, $file)
     {
@@ -144,8 +148,9 @@ trait UploadFile
     /**
      * Save single file to storage app
      * 
-     * @param $file
-     * @var void
+     * @param string $type
+     * @param mixed $file
+     * @return void
      */
     protected function saveSingleFile($type, $file)
     {
@@ -165,8 +170,10 @@ trait UploadFile
     /**
      * Update old file with the new one
      * 
-     * @param $file $old_file
-     * @var void
+     * @param string $type
+     * @param mixed $file
+     * @param mixed $old_file
+     * @return void
      */
     protected function updateSingleFile($type, $file, $old_file)
     {
@@ -192,8 +199,9 @@ trait UploadFile
     /**
      * Save multiple file at once
      * 
-     * @param $file
-     * @var void
+     * @param string $type
+     * @param mixed $file
+     * @return void
      */
     protected function saveMultipleFile($type, $files)
     {
@@ -223,8 +231,10 @@ trait UploadFile
     /**
      * Update multiple file at once
      * 
-     * @param $file $old_file
-     * @var void
+     * @param string $type
+     * @param mixed $file
+     * @param mixed $old_file
+     * @return void
      */
     protected function updateMultipleFile($type, $files, $old_file)
     {
