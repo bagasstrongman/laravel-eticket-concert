@@ -121,9 +121,9 @@ class User extends Authenticatable
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['username', 'email', 'language'])
+                            ->logOnly(['username','email','language'])
                             ->logOnlyDirty()
-                            ->useLogName('Users')
+                            ->useLogName('model')
                             ->setDescriptionForEvent(fn(string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))
                             ->dontSubmitEmptyLogs();
     }

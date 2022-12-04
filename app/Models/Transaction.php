@@ -114,9 +114,9 @@ class Transaction extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['username', 'email', 'language'])
+                            ->logOnly(['concert_id','user_id','transaction_code','quantity','total_payment','payment_date'])
                             ->logOnlyDirty()
-                            ->useLogName('Transaction')
+                            ->useLogName('model')
                             ->setDescriptionForEvent(fn(string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))
                             ->dontSubmitEmptyLogs();
     }
