@@ -79,19 +79,19 @@ Route::middleware('auth:sanctum')->group(function() {
 
     // Admin Route
     Route::prefix('admin')->as('admin.')->middleware('role:superadmin|admin')->group(function() {
-        Route::apiResource('company', Admin\CompanyController::class);
         Route::apiResource('account', Admin\AccountController::class);
+        Route::apiResource('company', Admin\CompanyController::class);
+        Route::apiResource('concert', Admin\ConcertController::class);
         Route::apiResource('transaction', Admin\TransactionController::class);
-        Route::apiResource('concert', Admin\ConcertController::class, ['only' => ['index','show']]);
         Route::apiResource('application', Admin\ApplicationController::class, ['only' => ['index','store']]);
     });
     
     // Audit Route
     Route::prefix('audit')->as('audit.')->middleware('role:superadmin')->group(function() {
-        Route::apiResource('query', Audit\QueryController::class, ['only' => ['index','show']]);
-        Route::apiResource('system', Audit\SystemController::class, ['only' => ['index','show']]);
         Route::apiResource('auth', Audit\AuthController::class, ['only' => ['index','show']]);
         Route::apiResource('model', Audit\ModelController::class, ['only' => ['index','show']]);
+        Route::apiResource('query', Audit\QueryController::class, ['only' => ['index','show']]);
+        Route::apiResource('system', Audit\SystemController::class, ['only' => ['index','show']]);
     });
 });
 
@@ -105,4 +105,4 @@ Route::middleware('auth:sanctum')->group(function() {
 | listed below this code will not function or listed properly.
 */
 
-Route::any('{any}', [Error\FallbackController::class, 'index'])->where('any', '.*');
+Route::any('{any}', [Error\FallbackController::class, 'index'])->where('any', '.*')->name('fallback');
