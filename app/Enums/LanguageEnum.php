@@ -11,9 +11,6 @@ class LanguageEnum extends Enum
      */
     public static function value()
     {
-        return [
-            'id',
-            'en'
-        ];
+        return config()->get('language.list');
     }
 }
