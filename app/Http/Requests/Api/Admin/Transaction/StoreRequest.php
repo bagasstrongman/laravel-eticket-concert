@@ -24,8 +24,8 @@ class StoreRequest extends ApiRequest
     public function rules()
     {
         return [
-            'concert' => ['required','numeric'],
-            'user' => ['required','numeric'],
+            'concert_id' => ['required','numeric'],
+            'user_id' => ['required','numeric'],
             'paid_at' => ['required','string','date_format:d-m-Y'],
             'book_at' => ['required','string','date_format:d-m-Y']
         ];
