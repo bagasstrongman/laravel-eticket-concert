@@ -75,7 +75,15 @@ class Concert extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'company_id',
+        'name',
+        'code',
+        'start_at',
+        'end_at',
+        'price',
+        'image'
+    ];
 
     /**
      * The attributes that aren't mass assignable.
@@ -98,14 +106,23 @@ class Concert extends Model
      *
      * @var array
      */
-    protected $dates = [];
+    protected $dates = [
+        'start_at',
+        'end_at'
+    ];
     
     /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
-    protected $casts = [];
+    protected $casts = [
+        'company_id' => 'integer',
+        'name' => 'string',
+        'code' => 'string',
+        'price' => 'string',
+        'image' => 'string'
+    ];
 
     /**
      * The spatie log that setting log option.
@@ -115,7 +132,7 @@ class Concert extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['company_id','name','code','start_at','end_at','price','image'])
+                            ->logOnly($this->fillable)
                             ->logOnlyDirty()
                             ->useLogName('model')
                             ->setDescriptionForEvent(fn(string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))

@@ -74,7 +74,14 @@ class Transaction extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'concert_id',
+        'user_id',
+        'transaction_code',
+        'quantity',
+        'total_payment',
+        'payment_date'
+    ];
 
     /**
      * The attributes that aren't mass assignable.
@@ -97,14 +104,22 @@ class Transaction extends Model
      *
      * @var array
      */
-    protected $dates = [];
+    protected $dates = [
+        'payment_date'
+    ];
     
     /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
-    protected $casts = [];
+    protected $casts = [
+        'concert_id' => 'integer',
+        'user_id' => 'integer',
+        'transaction_code' => 'string',
+        'quantity' => 'integer',
+        'total_payment' => 'string'
+    ];
 
     /**
      * The spatie log that setting log option.
@@ -114,7 +129,7 @@ class Transaction extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['concert_id','user_id','transaction_code','quantity','total_payment','payment_date'])
+                            ->logOnly($this->fillable)
                             ->logOnlyDirty()
                             ->useLogName('model')
                             ->setDescriptionForEvent(fn(string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))

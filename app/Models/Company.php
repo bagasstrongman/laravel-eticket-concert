@@ -74,7 +74,11 @@ class Company extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'phone',
+        'email'
+    ];
 
     /**
      * The attributes that aren't mass assignable.
@@ -104,7 +108,11 @@ class Company extends Model
      *
      * @var array<string, string>
      */
-    protected $casts = [];
+    protected $casts = [
+        'name' => 'string',
+        'phone' => 'string',
+        'email' => 'string'
+    ];
 
     /**
      * The spatie log that setting log option.
@@ -114,7 +122,7 @@ class Company extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['name','phone','email'])
+                            ->logOnly($this->fillable)
                             ->logOnlyDirty()
                             ->useLogName('model')
                             ->setDescriptionForEvent(fn(string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))
