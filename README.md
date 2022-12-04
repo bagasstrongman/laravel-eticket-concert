@@ -78,6 +78,14 @@ Contributors names and contact info
 
 ## Version History
 
-* 1.0-alpha
-    * Initial release
-    * Add main feature
+* 1.0.7-alpha
+    * update route api
+    * change some logic for audit log
+    * change main feature logic
+    * add cron job for prune expired concert data
+    * change resource, form request and model
+    * add company concert crud
+    * add code documentation and add security checker
+* 1.0.0-alpha
+    * initial release
+    * add main feature
