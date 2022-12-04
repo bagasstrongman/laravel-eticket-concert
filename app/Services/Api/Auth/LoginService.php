@@ -31,6 +31,8 @@ class LoginService extends ApiService
         
         $token = $user->createToken(fake()->userName);
 
+        activity('Login')->withProperties($user)->log($user->username . ' berhasil login');
+
         return $this->createResponse(trans('api.login.success'), [
             'data' => new LoginResource($user),
             'token' => $token->plainTextToken

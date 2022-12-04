@@ -13,11 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        $translate = config()->get('language.list');
+
+        if (empty($translate)) {
+            throw new \Exception('Error: config/language.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.');
+        }
+
+        $language = config()->get('app.locale');
+
+        if (empty($language)) {
+            throw new \Exception('Error: config/app.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.');
+        }
+
+        Schema::create('users', function (Blueprint $table) use ($translate, $language) {
             $table->id();
             $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->enum('language', ['id', 'en'])->default('id');
+            $table->enum('language', $translate)->default($language);
             $table->string('password');
             $table->timestamps();
         });

@@ -147,6 +147,22 @@ return [
             ]
         ],
         [
+            'group' => 'api',
+            'key' => 'transaction.not_found',
+            'text' => [
+                'id' => 'Data transaksi tidak ditemukan pada database',
+                'en' => 'Transaction data not found in database'
+            ]
+        ],
+        [
+            'group' => 'api',
+            'key' => 'payment.not_found',
+            'text' => [
+                'id' => 'Data pembelian tidak ditemukan pada database',
+                'en' => 'Payment data not found in database'
+            ]
+        ],
+        [
             'group' => 'model',
             'key' => 'activity.description',
             'text' => [

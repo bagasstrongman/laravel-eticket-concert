@@ -13,7 +13,7 @@ class ModelService extends ApiService
     public function index()
     {
         return $this->createResponse(trans('api.response.accepted'), [
-            'data' => ModelResource::collection($this->auditInterface->all(['*'], [], [['log_name', '!=', 'login'], ['log_name', '!=', 'logout']]))
+            'data' => ModelResource::collection($this->auditInterface->all(['*'], [], [['log_name', '!=', 'Login'], ['log_name', '!=', 'Logout'], ['log_name', '!=', 'Register']]))
         ], 202);
     }
 
@@ -24,7 +24,7 @@ class ModelService extends ApiService
      */
     public function show($id)
     {
-        $audit = $this->auditInterface->findById($id, ['*'], [], [['log_name', '!=', 'login'], ['log_name', '!=', 'logout']]);
+        $audit = $this->auditInterface->findById($id, ['*'], [], [['log_name', '!=', 'Login'], ['log_name', '!=', 'Logout'], ['log_name', '!=', 'Register']]);
 
         return $this->createResponse(trans('api.response.accepted'), [
             'data' => new ModelResource($audit)

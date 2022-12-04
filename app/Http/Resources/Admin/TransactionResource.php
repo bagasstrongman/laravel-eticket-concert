@@ -14,11 +14,19 @@ class TransactionResource extends Resource
      */
     public function toArray($request)
     {
+        $quantity = $this->quantity . ' ticket';
+
+        if ($this->quantity > 1) {
+            $quantity = $this->quantity . ' tickets';
+        }
+
         return [
-            'concert' => $this->event->name,
-            'user' => $this->buyer->name,
-            'paid_at' => dateYmdToDmy($this->paid_at),
-            'book_at' => dateYmdToDmy($this->book_at)
+            'user' => $this->user->username,
+            'concert' => $this->concert->name,
+            'transaction_code' => $this->transaction_code,
+            'quantity' => $quantity,
+            'total_payment' => $this->total_payment,
+            'payment_date' => dateYmdToDmy($this->payment_date),
         ];
     }
 }

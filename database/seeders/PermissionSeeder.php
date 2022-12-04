@@ -18,11 +18,20 @@ class PermissionSeeder extends Seeder
         if (Permission::count() == 0) {
             app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-            foreach (config()->get('permission.seeder.list') as $permission) {
-                Permission::create([
-                    'name' => $permission
-                ]);
-            };
+            $permissions = config()->get('permission.seeder.list');
+
+            if (empty($permissions)) {
+                throw new \Exception('Error: config/permission.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.');
+            }
+
+            $permission = collect($permissions)->map(function ($name) {
+                return [
+                    'name' => $name,
+                    'guard_name' => 'web'
+                ];
+            });
+
+            Permission::insert($permission->toArray());
         }
     }
 }

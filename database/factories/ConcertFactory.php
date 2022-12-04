@@ -16,11 +16,15 @@ class ConcertFactory extends Factory
      */
     public function definition()
     {
+        $date = now();
+
         return [
-            'company' => rand(1,10),
+            'company_id' => rand(1,10),
             'name' => fake()->unique()->name(),
-            'start_at' => now(),
-            'end_at' => now()
+            'code' => strtoupper(fake()->lexify()),
+            'start_at' => $date,
+            'end_at' => $date->addDays(rand(1,3)),
+            'price' => rand(100,250) . '000'
         ];
     }
 }

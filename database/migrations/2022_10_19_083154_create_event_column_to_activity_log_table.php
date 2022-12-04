@@ -14,9 +14,12 @@ return new class extends Migration
     public function up()
     {
         $table_name = config()->get('activitylog.table_name');
-        $connection = config()->get('activitylog.database_connection');
 
-        Schema::connection($connection)->table($table_name, function (Blueprint $table) {
+        if (empty($table_name)) {
+            throw new \Exception('Error: config/activitylog.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.');
+        }
+
+        Schema::table($table_name, function (Blueprint $table) {
             $table->string('event')->nullable()->after('subject_type');
         });
     }
@@ -29,9 +32,12 @@ return new class extends Migration
     public function down()
     {
         $table_name = config()->get('activitylog.table_name');
-        $connection = config()->get('activitylog.database_connection');
 
-        Schema::connection($connection)->table($table_name, function (Blueprint $table) {
+        if (empty($table_name)) {
+            throw new \Exception('Error: config/activitylog.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.');
+        }
+
+        Schema::table($table_name, function (Blueprint $table) {
             $table->dropColumn('event');
         });
     }

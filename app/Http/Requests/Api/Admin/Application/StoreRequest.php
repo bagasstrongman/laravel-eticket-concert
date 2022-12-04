@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\Admin\Application;
 
 use App\Http\Requests\ApiRequest;
 
-class UpdateRequest extends ApiRequest
+class StoreRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.

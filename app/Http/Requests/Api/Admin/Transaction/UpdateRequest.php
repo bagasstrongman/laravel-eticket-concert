@@ -24,8 +24,8 @@ class UpdateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'concert' => ['nullable','numeric'],
-            'user' => ['nullable','numeric'],
+            'concert_id' => ['nullable','numeric'],
+            'user_id' => ['nullable','numeric'],
             'paid_at' => ['nullable','string','date_format:d-m-Y'],
             'book_at' => ['nullable','string','date_format:d-m-Y']
         ];

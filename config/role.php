@@ -5,6 +5,7 @@ return [
         'list' => [
             'superadmin',
             'admin',
+            'company',
             'user'
         ]
     ]

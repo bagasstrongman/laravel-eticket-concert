@@ -14,8 +14,7 @@ class TransactionObserver
      */
     public function creating(Transaction $transaction)
     {
-        $transaction->paid_at = dateDmyToYmd($transaction->paid_at);
-        $transaction->book_at = dateDmyToYmd($transaction->book_at);
+        $transaction->payment_date = dateDmyToYmd($transaction->payment_date);
     }
 
     /**
@@ -26,7 +25,6 @@ class TransactionObserver
      */
     public function updating(Transaction $transaction)
     {
-        $transaction->paid_at = dateDmyToYmd($transaction->paid_at);
-        $transaction->book_at = dateDmyToYmd($transaction->book_at);
+        $transaction->payment_date = dateDmyToYmd($transaction->payment_date);
     }
 }

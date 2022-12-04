@@ -27,8 +27,7 @@ class StoreRequest extends ApiRequest
         return [
             'username' => ['nullable','string','max:255','unique:users,username'],
             'email' => ['nullable','string','max:255','unique:users,email','email:dns'],
-            'language' => ['nullable','string','max:255',new LanguageRule],
-            'password' => ['nullable','string','min:8','max:255','confirmed']
+            'language' => ['nullable','string','max:255',new LanguageRule]
         ];
     }
 }

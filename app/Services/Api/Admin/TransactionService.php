@@ -12,7 +12,7 @@ class TransactionService extends ApiService
      */
     public function index()
     {
-        $transactions = $this->transactionInterface->all(['*'], ['event','buyer']);
+        $transactions = $this->transactionInterface->all(['*'], ['concert','user']);
 
         if (count($transactions) > 0) {
             return $this->createResponse(trans('api.response.accepted'), [
@@ -42,9 +42,15 @@ class TransactionService extends ApiService
      * 
      * @param $path
      */
-    public function show($id)
+    public function show($code)
     {
-        $transaction = $this->transactionInterface->findById(intval($id), ['*'], ['event','buyer']);
+        $transaction = $this->transactionInterface->all(['*'], ['concert','user'], [['transaction_code', $code]])->first();
+
+        if (empty($transaction)) {
+            return $this->createResponse(trans('api.response.not_found'), [
+                'error' => trans('api.transaction.not_found')
+            ], 404);
+        }
 
         return $this->createResponse(trans('api.response.accepted'), [
             'data' => new TransactionResource($transaction)

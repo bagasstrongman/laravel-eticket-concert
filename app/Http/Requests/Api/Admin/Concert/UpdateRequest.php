@@ -24,7 +24,7 @@ class UpdateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'company' => ['nullable','numeric'],
+            'company_id' => ['nullable','numeric'],
             'name' => ['nullable','string','max:255','unique:concerts,name'],
             'start_at' => ['nullable','string','date_format:d-m-Y'],
             'end_at' => ['nullable','string','date_format:d-m-Y']

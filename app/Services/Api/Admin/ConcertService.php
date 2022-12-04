@@ -12,7 +12,7 @@ class ConcertService extends ApiService
      */
     public function index()
     {
-        $concerts = $this->concertInterface->all(['*'], ['companion']);
+        $concerts = $this->concertInterface->all(['*'], ['company']);
 
         if (count($concerts) > 0) {
             return $this->createResponse(trans('api.response.accepted'), [
@@ -42,9 +42,15 @@ class ConcertService extends ApiService
      * 
      * @param $path
      */
-    public function show($id)
+    public function show($code)
     {
-        $concert = $this->concertInterface->findById(intval($id), ['*'], ['companion']);
+        $concert = $this->concertInterface->all(['*'], ['company'], [['code', $code]])->first();
+
+        if (empty($concert)) {
+            return $this->createResponse(trans('api.response.not_found'), [
+                'error' => trans('api.concert.not_found')
+            ], 404);
+        }
 
         return $this->createResponse(trans('api.response.accepted'), [
             'data' => new ConcertResource($concert)

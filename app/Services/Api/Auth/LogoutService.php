@@ -17,6 +17,8 @@ class LogoutService extends ApiService
         $user = auth('sanctum')->user();
         $user->tokens()->delete();
 
+        activity('Logout')->withProperties($user)->log($user->username . ' berhasil logout');
+
         return $this->createResponse(trans('api.logout.success'), [
             'data' => new LogoutResource($user)
         ], 202);

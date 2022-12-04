@@ -16,11 +16,15 @@ class TransactionFactory extends Factory
      */
     public function definition()
     {
+        $total = rand(1,5);
+
         return [
-            'concert' => rand(1,10),
-            'user' => rand(1,10),
-            'paid_at' => now(),
-            'book_at' => now()
+            'concert_id' => rand(1,10),
+            'user_id' => rand(1,10),
+            'transaction_code' => strtoupper(fake()->lexify()) . '-' . uniqid() . '-' . date('dmY') . '-' . rand(1,10),
+            'quantity' => $total,
+            'total_payment' => rand(100,250) . '000' * $total,
+            'payment_date' => now()
         ];
     }
 }

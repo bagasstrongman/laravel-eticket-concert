@@ -126,9 +126,9 @@ class Transaction extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function event(): BelongsTo
+    public function concert(): BelongsTo
     {
-        return $this->belongsTo(Concert::class,'concert','id');
+        return $this->belongsTo(Concert::class,'concert_id','id');
     }
     
     /**
@@ -136,8 +136,8 @@ class Transaction extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function buyer(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class,'user','id');
+        return $this->belongsTo(User::class,'user_id','id');
     }
 }

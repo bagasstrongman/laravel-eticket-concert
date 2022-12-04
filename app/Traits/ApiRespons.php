@@ -48,7 +48,6 @@ trait ApiRespons
             'content-type' => null
         ],
         'data' => [],
-        'errors' => [],
         'metadata' => [
             'total_data' => 0
         ]

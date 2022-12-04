@@ -61,28 +61,33 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::apiResource('logout', Auth\LogoutController::class, ['only' => ['store']]);
 
     // Main Route
-    Route::prefix('main')->middleware('role:user')->group(function() {
+    Route::prefix('main')->as('main.')->middleware('role:user')->group(function() {
         Route::apiResource('payment', Main\PaymentController::class, ['only' => ['store']]);
         Route::apiResource('concert', Main\ConcertController::class, ['only' => ['index','show']]);
         Route::apiResource('transaction', Main\TransactionController::class, ['only' => ['index','show']]);
     });
 
     // Profile Route
-    Route::prefix('profile')->group(function() {
+    Route::prefix('profile')->as('profile.')->group(function() {
         Route::apiResource('account', Profile\AccountController::class, ['only' => ['index','store']]);
     });
 
-    // Admin Route
-    Route::prefix('admin')->middleware('role:superadmin|admin')->group(function() {
-        Route::apiResource('company', Admin\CompanyController::class);
+    // Company Route
+    Route::prefix('company')->as('company.')->middleware('role:company')->group(function() {
         Route::apiResource('concert', Admin\ConcertController::class);
+    });
+
+    // Admin Route
+    Route::prefix('admin')->as('admin.')->middleware('role:superadmin|admin')->group(function() {
+        Route::apiResource('company', Admin\CompanyController::class);
         Route::apiResource('account', Admin\AccountController::class);
         Route::apiResource('transaction', Admin\TransactionController::class);
-        Route::apiResource('application', Admin\ApplicationController::class, ['only' => ['index','update']]);
+        Route::apiResource('concert', Admin\ConcertController::class, ['only' => ['index','show']]);
+        Route::apiResource('application', Admin\ApplicationController::class, ['only' => ['index','store']]);
     });
     
     // Audit Route
-    Route::prefix('audit')->middleware('role:superadmin')->group(function() {
+    Route::prefix('audit')->as('audit.')->middleware('role:superadmin')->group(function() {
         Route::apiResource('query', Audit\QueryController::class, ['only' => ['index','show']]);
         Route::apiResource('system', Audit\SystemController::class, ['only' => ['index','show']]);
         Route::apiResource('auth', Audit\AuthController::class, ['only' => ['index','show']]);

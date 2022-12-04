@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('concert');
-            $table->bigInteger('user');
-            $table->date('paid_at');
-            $table->date('book_at');
+            $table->bigInteger('concert_id');
+            $table->bigInteger('user_id');
+            $table->string('transaction_code');
+            $table->bigInteger('quantity');
+            $table->string('total_payment');
+            $table->date('payment_date');
             $table->timestamps();
         });
     }

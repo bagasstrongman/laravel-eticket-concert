@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\ApiController;
 use App\Services\Api\Admin\ApplicationService;
-use App\Http\Requests\Api\Admin\Application\UpdateRequest;
+use App\Http\Requests\Api\Admin\Application\StoreRequest;
 
 class ApplicationController extends ApiController
 {
@@ -34,16 +34,15 @@ class ApplicationController extends ApiController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, ApplicationService $service, $id)
+    public function store(StoreRequest $request, ApplicationService $service)
     {
         try {
-            return $service->update($request->validated(), $id);
+            return $service->store($request->validated());
         } catch (\Throwable $th) {
             return $this->catchError($th);
         }

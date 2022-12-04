@@ -10,18 +10,12 @@ class PaymentService extends ApiService
     /**
      * Index function.
      */
-    public function index($date)
+    public function index($id)
     {
-        $transactions = $this->transactionInterface->all(['*'], ['event','buyer'], [['created_at', $date], ['user', auth('sanctum')->user()->id]]);
-
-        if (count($transactions) > 0) {
-            return $this->createResponse(trans('api.response.accepted'), [
-                'data' => PaymentResource::collection($transactions)
-            ], 202);
-        }
+        $transactions = $this->transactionInterface->findById($id, ['*'], ['concert','user']);
 
         return $this->createResponse(trans('api.response.accepted'), [
-            'data' => trans('api.response.no_data')
+            'data' => new PaymentResource($transactions)
         ], 202);
     }
 
@@ -32,26 +26,26 @@ class PaymentService extends ApiService
      */
     public function store($request)
     {
-        $concert = $this->concertInterface->all(['*'], [], [['id', $request['concert']]])->first();
+        $concert = $this->concertInterface->all(['*'], [], [['code', $request['concert_code']]])->first();
 
-        if ($concert == null) {
+        if (empty($concert)) {
             return $this->createResponse(trans('api.response.not_found'), [
-                'error' => trans('api.concert.not_found')
+                'error' => trans('api.payment.not_found')
             ], 404);
         }
 
-        $date = now();
+        $user = auth('sanctum')->user();
+        $quantity = $request['quantity'];
 
-        for ($i=0; $i < intval($request['quantity']); $i++) {
-            $this->transactionInterface->create([
-                'concert' => $concert->id,
-                'user' => auth('sanctum')->user()->id,
-                'paid_at' => $date,
-                'book_at' => $date,
-                'created_at' => $date
-            ]);
-        }
+        $transaction = $this->transactionInterface->create([
+            'concert_id' => $concert->id,
+            'user_id' => $user->id,
+            'transaction_code' => $concert->code . '-' . uniqid() . '-' . date('dmY') . '-' . $user->id,
+            'quantity' => $quantity,
+            'total_payment' => $quantity * $concert->price,
+            'payment_date' => dateDmyToYmd(now())
+        ]);
 
-        return $this->index($date);
+        return $this->index($transaction->id);
     }
 }
