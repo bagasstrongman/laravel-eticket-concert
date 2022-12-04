@@ -11,6 +11,8 @@ trait LogReader
     /**
      * Get file list from laravel app log
      *
+     * @param string $type
+     * @param string $channel
      * @return array
      */
     protected function getFileList($type, $channel = 'laravel')
@@ -50,8 +52,6 @@ trait LogReader
     /**
      * Read file content from laravel app log
      *
-     * @param string $type
-     * @param string $channel
      * @param date $date
      * @return array
      */
