@@ -12,7 +12,7 @@ class ApplicationService extends ApiService
      */
     public function index()
     {
-        $application = $this->userInterface->findById(1);
+        $application = $this->applicationInterface->findById(1);
 
         return $this->createResponse(trans('api.response.accepted'), [
             'data' => new ApplicationResource($application)
@@ -20,14 +20,13 @@ class ApplicationService extends ApiService
     }
 
     /**
-     * Update function.
+     * Store function.
      * 
      * @param $request
-     * @param $id
      */
-    public function update($request, $id)
+    public function store($request)
     {
-        $this->userInterface->update(1, $request);
+        $this->applicationInterface->update(1, $request);
 
         if (empty($request)) {
             return $this->createResponse(trans('api.response.updated'), [
