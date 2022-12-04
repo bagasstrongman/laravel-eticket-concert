@@ -73,7 +73,13 @@ class Application extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'app_name',
+        'app_icon',
+        'meta_author',
+        'meta_description',
+        'meta_keywords'
+    ];
 
     /**
      * The attributes that aren't mass assignable.
@@ -103,7 +109,13 @@ class Application extends Model
      *
      * @var array<string, string>
      */
-    protected $casts = [];
+    protected $casts = [
+        'app_name' => 'string',
+        'app_icon' => 'string',
+        'meta_author' => 'string',
+        'meta_description' => 'string',
+        'meta_keywords' => 'string'
+    ];
     
     /**
      * The spatie log that setting log option.
@@ -113,7 +125,7 @@ class Application extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['app_name', 'app_icon', 'meta_author', 'meta_description', 'meta_keywords'])
+                            ->logOnly($this->fillable)
                             ->logOnlyDirty()
                             ->useLogName('model')
                             ->setDescriptionForEvent(fn(string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))
