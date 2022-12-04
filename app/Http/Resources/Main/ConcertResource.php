@@ -15,8 +15,10 @@ class ConcertResource extends Resource
     public function toArray($request)
     {
         return [
-            'company' => $this->companion->name,
             'name' => $this->name,
+            'company' => $this->company->name,
+            'code' => $this->code,
+            'price' => $this->price,
             'start_at' => dateYmdToDmy($this->start_at),
             'end_at' => dateYmdToDmy($this->end_at)
         ];

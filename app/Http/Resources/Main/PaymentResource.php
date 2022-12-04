@@ -14,14 +14,24 @@ class PaymentResource extends Resource
      */
     public function toArray($request)
     {
+        $quantity = $this->quantity . ' ticket';
+
+        if ($this->quantity > 1) {
+            $quantity = $this->quantity . ' tickets';
+        }
+
         return [
-            'user' => $this->buyer->username,
-            'paid_at' => dateYmdToDmy($this->paid_at),
+            'user' => $this->user->username,
+            'transaction_code' => $this->transaction_code,
+            'quantity' => $quantity,
+            'total_payment' => $this->total_payment,
             'book_at' => dateYmdToDmy($this->book_at),
             'concert' => [
-                'name' => $this->event->name,
-                'start_at' => $this->event->start_at,
-                'end_at' => $this->event->end_at
+                'code' => $this->concert->code,
+                'price' => $this->concert->price,
+                'company' => $this->concert->company->name,
+                'start_at' => dateYmdToDmy($this->concert->start_at),
+                'end_at' => dateYmdToDmy($this->concert->end_at)
             ]
         ];
     }
