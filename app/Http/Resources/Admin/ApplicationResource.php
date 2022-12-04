@@ -16,6 +16,7 @@ class ApplicationResource extends Resource
     {
         return [
             'app_name' => $this->app_name,
+            'app_icon' => $this->app_icon,
             'meta_author' => $this->meta_author,
             'meta_keywords' => $this->meta_keywords,
             'meta_description' => $this->meta_description

@@ -24,10 +24,11 @@ class UpdateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'company_id' => ['nullable','numeric'],
+            'company_id' => ['nullable','numeric','min:1'],
             'name' => ['nullable','string','max:255','unique:concerts,name'],
-            'start_at' => ['nullable','string','date_format:d-m-Y'],
-            'end_at' => ['nullable','string','date_format:d-m-Y']
+            'code' => ['nullable','string','max:255','unique:concerts,code'],
+            'start_at' => ['nullable','date','date_format:d-m-Y','after:'.now()->subDay()->format('d-m-Y')],
+            'end_at' => ['nullable','date','date_format:d-m-Y','after:'.now()->format('d-m-Y')]
         ];
     }
 }

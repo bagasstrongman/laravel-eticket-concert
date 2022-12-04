@@ -25,7 +25,7 @@ class StoreRequest extends ApiRequest
     {
         return [
             'concert_code' => ['required','string','max:255'],
-            'quantity' => ['required','numeric']
+            'quantity' => ['required','numeric','min:1']
         ];
     }
 }

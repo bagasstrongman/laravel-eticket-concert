@@ -114,9 +114,9 @@ class Company extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['name', 'phone', 'email'])
+                            ->logOnly(['name','phone','email'])
                             ->logOnlyDirty()
-                            ->useLogName('Company')
+                            ->useLogName('model')
                             ->setDescriptionForEvent(fn(string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))
                             ->dontSubmitEmptyLogs();
     }

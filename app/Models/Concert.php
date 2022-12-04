@@ -115,9 +115,9 @@ class Concert extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['company', 'name', 'start_at', 'end_at'])
+                            ->logOnly(['company_id','name','code','start_at','end_at','price','image'])
                             ->logOnlyDirty()
-                            ->useLogName('Concert')
+                            ->useLogName('model')
                             ->setDescriptionForEvent(fn(string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))
                             ->dontSubmitEmptyLogs();
     }

@@ -115,7 +115,7 @@ class Application extends Model
         return LogOptions::defaults()
                             ->logOnly(['app_name', 'app_icon', 'meta_author', 'meta_description', 'meta_keywords'])
                             ->logOnlyDirty()
-                            ->useLogName('Application')
+                            ->useLogName('model')
                             ->setDescriptionForEvent(fn(string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))
                             ->dontSubmitEmptyLogs();
     }
