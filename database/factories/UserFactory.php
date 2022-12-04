@@ -16,10 +16,16 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $translate = config()->get('language.list');
+
+        if (empty($translate)) {
+            throw new \Exception('Error: config/language.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.');
+        }
+
         return [
             'username' => fake()->unique()->userName(),
             'email' => fake()->unique()->safeEmail(),
-            'language' => fake()->randomElement(['id', 'en']),
+            'language' => fake()->randomElement($translate),
             'password' => 'password'
         ];
     }
