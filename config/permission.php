@@ -261,6 +261,13 @@ return [
                 'application.index',
                 'application.update'
             ],
+            'company' => [
+                'concert.index',
+                'concert.store',
+                'concert.show',
+                'concert.update',
+                'concert.destroy',
+            ],
             'user' => [
                 'concert.index',
                 'concert.show',
