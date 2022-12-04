@@ -40,6 +40,10 @@ Generate a new application key
 
     php artisan key:generate
 
+Generate hyper link from storage folder to public folder
+
+    php artisan storage:link
+
 Run the database migrations (**Set the database connection in .env before migrating**)
 
     php artisan migrate:fresh --seed
@@ -57,6 +61,7 @@ You can now access the server at http://localhost:8000
     composer install
     cp .env.example .env
     php artisan key:generate
+    php artisan storage:link
     
 **Make sure you set the correct database connection information before running the migrations**
 
@@ -74,7 +79,7 @@ Please create issue for detail information
 
 Contributors names and contact info
 
-[@benjamin4kk](https://github.com/Sleepy4k)
+[@Sleepy4k](https://github.com/Sleepy4k)
 
 ## Version History
 
