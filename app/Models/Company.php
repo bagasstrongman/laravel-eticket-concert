@@ -126,8 +126,8 @@ class Company extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function event(): HasMany
+    public function concert(): HasMany
     {
-        return $this->hasMany(Concert::class,'company','id');
+        return $this->hasMany(Concert::class,'company_id','id');
     }
 }

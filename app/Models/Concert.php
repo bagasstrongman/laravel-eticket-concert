@@ -127,9 +127,9 @@ class Concert extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function companion(): BelongsTo
+    public function company(): BelongsTo
     {
-        return $this->belongsTo(Company::class,'company','id');
+        return $this->belongsTo(Company::class,'company_id','id');
     }
     
     /**
@@ -137,8 +137,8 @@ class Concert extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function transactions(): HasMany
+    public function transaction(): HasMany
     {
-        return $this->hasMany(Transaction::class,'concert','id');
+        return $this->hasMany(Transaction::class,'concert_id','id');
     }
 }

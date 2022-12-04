@@ -133,8 +133,8 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function transactions(): HasMany
+    public function transaction(): HasMany
     {
-        return $this->hasMany(Transaction::class,'user','id');
+        return $this->hasMany(Transaction::class,'user_id','id');
     }
 }
