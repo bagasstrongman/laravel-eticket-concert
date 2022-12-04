@@ -8,9 +8,10 @@ use App\Http\Resources\Auth\RegisterResource;
 class RegisterService extends ApiService
 {
     /**
-     * Store function.
+     * Store a newly created resource in storage.
      * 
-     * @param $request
+     * @param  array  $request
+     * @return \Illuminate\Http\Response
      */
     public function store($request)
     {

@@ -8,7 +8,9 @@ use App\Http\Resources\Main\ConcertResource;
 class ConcertService extends ApiService
 {
     /**
-     * Index function.
+     * Display a listing of the resource.
+     * 
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -26,9 +28,10 @@ class ConcertService extends ApiService
     }
 
     /**
-     * Show function.
+     * Display the specified resource.
      * 
-     * @param $path
+     * @param  string  $code
+     * @return \Illuminate\Http\Response
      */
     public function show($code)
     {

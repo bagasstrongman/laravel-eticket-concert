@@ -9,9 +9,10 @@ use App\Http\Resources\Auth\LoginResource;
 class LoginService extends ApiService
 {
     /**
-     * Store function.
+     * Store a newly created resource in storage.
      * 
-     * @param $request
+     * @param  array  $request
+     * @return \Illuminate\Http\Response
      */
     public function store($request)
     {

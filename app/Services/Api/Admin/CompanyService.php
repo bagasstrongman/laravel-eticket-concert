@@ -8,7 +8,9 @@ use App\Http\Resources\Admin\CompanyResource;
 class CompanyService extends ApiService
 {
     /**
-     * Index function.
+     * Display a listing of the resource.
+     * 
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -26,9 +28,10 @@ class CompanyService extends ApiService
     }
 
     /**
-     * Store function.
+     * Store a newly created resource in storage.
      * 
-     * @param $request
+     * @param  array  $request
+     * @return \Illuminate\Http\Response
      */
     public function store($request)
     {
@@ -38,9 +41,10 @@ class CompanyService extends ApiService
     }
 
     /**
-     * Show function.
+     * Display the specified resource.
      * 
-     * @param $path
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -52,10 +56,11 @@ class CompanyService extends ApiService
     }
 
     /**
-     * Update function.
+     * Update the specified resource in storage.
      * 
-     * @param $request
-     * @param $id
+     * @param  array  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function update($request, $id)
     {
@@ -71,9 +76,10 @@ class CompanyService extends ApiService
     }
 
     /**
-     * Destroy function.
+     * Remove the specified resource from storage.
      * 
-     * @param $id
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {

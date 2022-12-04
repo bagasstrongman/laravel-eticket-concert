@@ -8,7 +8,10 @@ use App\Http\Resources\Main\PaymentResource;
 class PaymentService extends ApiService
 {
     /**
-     * Index function.
+     * Display a listing of the resource.
+     * 
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function index($id)
     {
@@ -20,9 +23,10 @@ class PaymentService extends ApiService
     }
 
     /**
-     * Store function.
+     * Store a newly created resource in storage.
      * 
-     * @param $request
+     * @param  array  $request
+     * @return \Illuminate\Http\Response
      */
     public function store($request)
     {

@@ -8,7 +8,9 @@ use App\Http\Resources\Admin\ConcertResource;
 class ConcertService extends ApiService
 {
     /**
-     * Index function.
+     * Display a listing of the resource.
+     * 
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -26,9 +28,10 @@ class ConcertService extends ApiService
     }
 
     /**
-     * Store function.
+     * Store a newly created resource in storage.
      * 
-     * @param $request
+     * @param  array  $request
+     * @return \Illuminate\Http\Response
      */
     public function store($request)
     {
@@ -38,9 +41,10 @@ class ConcertService extends ApiService
     }
 
     /**
-     * Show function.
+     * Store a newly created resource in storage.
      * 
-     * @param $path
+     * @param  string  $code
+     * @return \Illuminate\Http\Response
      */
     public function show($code)
     {
@@ -56,16 +60,23 @@ class ConcertService extends ApiService
             'data' => new ConcertResource($concert)
         ], 206);
     }
-
+    
     /**
-     * Update function.
+     * Update the specified resource in storage.
      * 
-     * @param $request
-     * @param $id
+     * @param  array  $request
+     * @param  string  $code
+     * @return \Illuminate\Http\Response
      */
-    public function update($request, $id)
+    public function update($request, $code)
     {
-        $this->concertInterface->update(intval($id), $request);
+        $concert = $this->concertInterface->all(['*'], [], [['code', $code]])->first();
+
+        if (empty($concert)) {
+            return $this->createResponse(trans('api.response.not_found'), [
+                'error' => trans('api.concert.not_found')
+            ], 404);
+        }
 
         if (empty($request)) {
             return $this->createResponse(trans('api.response.updated'), [
@@ -73,17 +84,28 @@ class ConcertService extends ApiService
             ], 202);
         }
 
+        $concert->update($request);
+
         return $this->index();
     }
 
     /**
-     * Destroy function.
+     * Remove the specified resource from storage.
      * 
-     * @param $id
+     * @param  string  $code
+     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($code)
     {
-        $this->concertInterface->deleteById($id);
+        $concert = $this->concertInterface->all(['*'], [], [['code', $code]])->first();
+        
+        if (empty($concert)) {
+            return $this->createResponse(trans('api.response.not_found'), [
+                'error' => trans('api.concert.not_found')
+            ], 404);
+        }
+
+        $concert->delete();
 
         return $this->index();
     }
