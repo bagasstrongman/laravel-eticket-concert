@@ -12,8 +12,10 @@ class AuthService extends ApiService
      */
     public function index()
     {
+        $auth = $this->auditInterface->all(['*'], [], [['log_name', 'auth']]);
+
         return $this->createResponse(trans('api.response.accepted'), [
-            'data' => AuthResource::collection($this->auditInterface->all(['*'], [], [['log_name', 'Login'], ['log_name', 'Logout'], ['log_name', 'Register']]))
+            'data' => AuthResource::collection($auth)
         ], 202);
     }
 
@@ -24,10 +26,10 @@ class AuthService extends ApiService
      */
     public function show($id)
     {
-        $audit = $this->auditInterface->findById($id, ['*'], [], [['log_name', 'Login'], ['log_name', 'Logout'], ['log_name', 'Register']]);
+        $auth = $this->auditInterface->findById($id, ['*'], [], [['log_name', 'auth']]);
 
         return $this->createResponse(trans('api.response.accepted'), [
-            'data' => new AuthResource($audit)
+            'data' => new AuthResource($auth)
         ], 206);
     }
 }
