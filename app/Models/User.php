@@ -117,6 +117,7 @@ class User extends Authenticatable
         'username' => 'string',
         'email' => 'string',
         'language' => 'string',
+        'password' => 'string'
     ];
 
     /**

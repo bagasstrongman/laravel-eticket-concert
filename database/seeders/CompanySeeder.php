@@ -15,7 +15,9 @@ class CompanySeeder extends Seeder
     public function run()
     {
         if (Company::count() == 0) {
-            Company::factory(10)->create();
+            $companies = Company::factory(10)->make();
+
+            Company::insert($companies->toArray());
         }
     }
 }

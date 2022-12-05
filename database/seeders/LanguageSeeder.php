@@ -21,12 +21,10 @@ class LanguageSeeder extends Seeder
                 throw new \Exception('Error: config/translate.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.');
             }
 
-            $language = collect($languages)->map(function ($trans) {
-                return [
-                    'group' => $trans['group'],
-                    'key' => $trans['key'],
-                    'text' => json_encode($trans['text'])
-                ];
+            $language = collect($languages)->map(function ($lang) {
+                $lang['text'] = json_encode($lang['text']);
+
+                return $lang;
             });
 
             LanguageLine::insert($language->toArray());

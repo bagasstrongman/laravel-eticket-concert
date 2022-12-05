@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->enum('language', $translate)->default($language);
-            $table->string('password');
+            $table->string('password')->default('password');
             $table->timestamps();
         });
     }
