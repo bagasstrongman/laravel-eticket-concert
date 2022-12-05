@@ -15,7 +15,9 @@ class TransactionSeeder extends Seeder
     public function run()
     {
         if (Transaction::count() == 0) {
-            Transaction::factory(10)->create();
+            $transactions = Transaction::factory(10)->make();
+
+            Transaction::insert($transactions->toArray());
         }
     }
 }

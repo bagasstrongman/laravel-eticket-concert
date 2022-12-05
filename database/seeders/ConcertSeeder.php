@@ -15,7 +15,9 @@ class ConcertSeeder extends Seeder
     public function run()
     {
         if (Concert::count() == 0) {
-            Concert::factory(10)->create();
+            $concerts = Concert::factory(10)->make();
+
+            Concert::insert($concerts->toArray());
         }
     }
 }
