@@ -35,10 +35,16 @@ class UserRepository extends EloquentRepository implements UserInterface
      */
     public function create(array $payload): ?Model
     {
+        if (array_key_exists('role', $payload)) {
+            $role = $payload['role'];
+
+            unset($payload['role']);
+        }
+
         $model = $this->model->create($payload);
 
         if (array_key_exists('role', $payload)) {
-            $model->assignRole($payload['role']);
+            $model->assignRole($role);
         } else {
             $model->assignRole('user');
         }
@@ -55,10 +61,16 @@ class UserRepository extends EloquentRepository implements UserInterface
      */
     public function update(int $modelId, array $payload): bool
     {
+        if (array_key_exists('role', $payload)) {
+            $role = $payload['role'];
+
+            unset($payload['role']);
+        }
+
         $model = $this->findById($modelId);
 
         if (array_key_exists('role', $payload)) {
-            $model->syncRoles($payload['role']);
+            $model->syncRoles($role);
         }
 
         return $model->update($payload);
