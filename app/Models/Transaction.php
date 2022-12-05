@@ -118,7 +118,8 @@ class Transaction extends Model
         'user_id' => 'integer',
         'transaction_code' => 'string',
         'quantity' => 'integer',
-        'total_payment' => 'string'
+        'total_payment' => 'string',
+        'payment_date' => 'date:Y-m-d'
     ];
 
     /**

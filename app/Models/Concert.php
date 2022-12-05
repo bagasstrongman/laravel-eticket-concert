@@ -120,6 +120,8 @@ class Concert extends Model
         'company_id' => 'integer',
         'name' => 'string',
         'code' => 'string',
+        'start_at' => 'date:Y-m-d',
+        'end_at' => 'date:Y-m-d',
         'price' => 'string',
         'image' => 'string'
     ];
