@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class ApiHeaders
+class Jsonify
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,13 @@ class ApiHeaders
      */
     public function handle(Request $request, Closure $next)
     {
-        $request->headers->set('Accept', 'application/json');
-        $request->headers->set('Content-Type', 'application/json');
+        if (config()->get('api.enable_header')) {
+            $request->headers->set('Accept', 'application/json');
+            
+            if (config()->get('api.force_header')) {
+                $request->headers->set('Content-Type', 'application/json');
+            }
+        }
 
         if (auth('sanctum')->check()) {
             $user = auth('sanctum')->user()->language;

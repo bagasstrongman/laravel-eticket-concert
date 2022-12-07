@@ -24,8 +24,8 @@ class StoreRequest extends ApiRequest
     public function rules()
     {
         return [
-            'concert_id' => ['required','numeric','min:1'],
-            'user_id' => ['required','numeric','min:1'],
+            'concert_id' => ['required','numeric','min:1','exists:concerts,id'],
+            'user_id' => ['required','numeric','min:1','exists:users,id'],
             'transaction_code' => ['required','string','max:255'],
             'quantity' => ['required','numeric','min:1'],
             'total_payment' => ['required','string','max:255'],
