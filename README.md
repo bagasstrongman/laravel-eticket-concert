@@ -83,6 +83,11 @@ Contributors names and contact info
 
 ## Version History
 
+* 1.0.11-alpha
+    * add admin feature
+    * change model
+    * optimize database seeder
+    * add image upload support
 * 1.0.7-alpha
     * update route api
     * change some logic for audit log
