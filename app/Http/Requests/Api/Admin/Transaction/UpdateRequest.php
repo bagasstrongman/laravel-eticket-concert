@@ -24,8 +24,8 @@ class UpdateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'concert_id' => ['nullable','numeric','min:1'],
-            'user_id' => ['nullable','numeric','min:1'],
+            'concert_id' => ['nullable','numeric','min:1','exists:concerts,id'],
+            'user_id' => ['nullable','numeric','min:1','exists:users,id'],
             'transaction_code' => ['nullable','string','max:255'],
             'quantity' => ['nullable','numeric','min:1'],
             'total_payment' => ['nullable','string','max:255'],
