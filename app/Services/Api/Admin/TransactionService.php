@@ -65,12 +65,18 @@ class TransactionService extends ApiService
      * Update the specified resource in storage.
      * 
      * @param  array  $request
-     * @param  int  $id
+     * @param  string  $code
      * @return \Illuminate\Http\Response
      */
-    public function update($request, $id)
+    public function update($request, $code)
     {
-        $this->transactionInterface->update(intval($id), $request);
+        $transaction = $this->transactionInterface->all(['*'], [], [['transaction_code', $code]])->first();
+
+        if (empty($transaction)) {
+            return $this->createResponse(trans('api.response.not_found'), [
+                'error' => trans('api.transaction.not_found')
+            ], 404);
+        }
 
         if (empty($request)) {
             return $this->createResponse(trans('api.response.updated'), [
@@ -78,18 +84,28 @@ class TransactionService extends ApiService
             ], 202);
         }
 
+        $transaction->update($request);
+
         return $this->index();
     }
 
     /**
      * Remove the specified resource from storage.
      * 
-     * @param  int  $id
+     * @param  string  $code
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($code)
     {
-        $this->transactionInterface->deleteById($id);
+        $transaction = $this->transactionInterface->all(['*'], [], [['transaction_code', $code]])->first();
+        
+        if (empty($transaction)) {
+            return $this->createResponse(trans('api.response.not_found'), [
+                'error' => trans('api.transaction.not_found')
+            ], 404);
+        }
+
+        $transaction->delete();
 
         return $this->index();
     }
