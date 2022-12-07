@@ -35,6 +35,10 @@ class ConcertService extends ApiService
      */
     public function store($request)
     {
+        if (!empty($request['image'])) {
+            $request['image'] = $this->saveSingleFile('image', $request['image']);
+        }
+
         $this->concertInterface->create($request);
 
         return $this->index();
@@ -82,6 +86,10 @@ class ConcertService extends ApiService
             return $this->createResponse(trans('api.response.updated'), [
                 'data' => trans('api.response.no_data_changed')
             ], 202);
+        }
+
+        if (!empty($request['image'])) {
+            $request['image'] = $this->updateSingleFile('image', $request['image'], $concert->image);
         }
 
         $concert->update($request);
